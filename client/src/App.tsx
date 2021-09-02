@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles/main.module.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import LandingPage from './components/LandingPage';
