@@ -6,7 +6,7 @@ const DistrictPage = (props: any) => {
     console.log(tikNum)
     return (
         <main>
-            <p>Hello World</p>
+            <p>Hey</p>
         </main>
     )
 }
