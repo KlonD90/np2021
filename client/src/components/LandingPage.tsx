@@ -71,7 +71,12 @@ const LandingPage = (props: any) => {
                                     </TableRow>
                                 </TableHead>
                                 {data ? data?.data?.districts.map((dist: any) => {
-                                    return <TableRow key={dist.tiknum}>
+                                    return <TableRow onClick={() => {
+                                        props.history.push({
+                                            pathname: '/tk/:id',
+                                            search: `?tiknum=${dist.tiknum}`
+                                        })
+                                    }} key={dist.tiknum}>
                                         <TableCell align="right">{dist.tik_name}</TableCell>
                                         <TableCell align="right">{dist.votes}</TableCell>
                                         <TableCell align="right">{dist.official ? dist.official : <p>нет данных</p>}</TableCell>
