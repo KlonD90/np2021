@@ -1,13 +1,6 @@
 import React from 'react';
 import { Typography, Container, Grid, Box, Paper, TableContainer, Table, TableHead, TableRow, TableCell } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
-const useStyles = makeStyles({
-    table: {
-        width: "100%",
-        display: 'block',
-        overflowX: 'auto'
-    }
-})
+import {useStyles} from '../styles/CustomStyles'
 
 const TableComponent = (props: any) => {
     const classes = useStyles();

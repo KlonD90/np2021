@@ -2,12 +2,13 @@ import React, { useRef } from 'react'
 import { useElementSize } from './ResizeHook';
 import { AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid } from 'recharts';
 import { format, parseISO } from 'date-fns';
+import '../styles/chart.css';
 
 const Chart = (props: any) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [width, height] = useElementSize(containerRef);
     return (
-        <div ref={containerRef} style={{ width: "100%", overflow: "hidden" }}>
+        <div className='chart-container' ref={containerRef} style={{ width: "100%", overflow: "hidden" }}>
             {props.data ?
                 <AreaChart
                     height={400}
