@@ -22,5 +22,11 @@ export const useStyles = makeStyles({
         top: "0.2em",
         right: "0.2em",
         color: "#ededed"
+    },
+    hoverEffect: {
+        "&:hover": {
+            background: "#D4F1F4",
+            cursor: "pointer"
+        }
     }
 })

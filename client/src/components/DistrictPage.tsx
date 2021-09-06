@@ -17,7 +17,7 @@ const DistrictPage = (props: any) => {
     console.log(data)
     return (
         <Container maxWidth="md">
-            <Typography variant="h5" align="center" >{data?.data?.data?.tik_address} </Typography>
+            <Typography variant="h5" align="center" >{data?.data?.data?.tik_name} </Typography>
             <main className="landing-pg">
                 <Grid container
                     spacing={1}
