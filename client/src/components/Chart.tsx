@@ -34,6 +34,7 @@ const Chart = (props: any) => {
                         </defs>
                         <Area name="кол-во проголосовавших по данным НП" dataKey="amount" stroke="black" fill="url(#color)" />
                         <XAxis
+                            fontFamily={'Roboto, sans-serif'}
                             angle={width <= 478 ? -45 : 0}
                             interval={0}
                             dataKey="vote_date"
@@ -46,7 +47,9 @@ const Chart = (props: any) => {
                             }} />
                         {props.electors ?
                             <YAxis dataKey="amount" domain={[0, (dataMax: any) => (props.electors)]} /> :
-                            <YAxis dataKey="amount" />}
+                            <YAxis dataKey="amount"
+                                fontFamily={'Roboto, sans-serif'}
+                            />}
                         {props.data.map((votesData: any) => {
                             if (votesData.vote_date === "2021-08-11 20:00:00") {
                                 return <ReferenceArea x1="2021-08-11 09:00:00" x2="2021-08-11 18:00:00" fill="yellow" label={format(parseISO(votesData.vote_date), "PPP")} />
@@ -59,7 +62,7 @@ const Chart = (props: any) => {
                         }
                         <Tooltip />
                         <CartesianGrid opacity={0.9} vertical={false} />
-                        <Legend />
+                        <Legend fontFamily={'Roboto, sans-serif'} className="fontName" />
                         {/* <Line type="monotone" dataKey="amount" stroke="#8884d8" activeDot={{ r: 8 }} /> */}
                     </AreaChart>
 

@@ -6,3 +6,8 @@
     scrollbar-width: none; /* Firefox */
     height: 400px;
 }
+
+.fontName {
+    font: normal normal 900 9px/12px Roboto; 
+    letter-spacing: -0.29px;
+  }
