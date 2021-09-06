@@ -1,9 +1,10 @@
 import React from 'react';
-import { Typography, Container, Grid, Box, Paper, TableContainer, Table, TableHead, TableRow, TableCell } from '@material-ui/core';
+import { Paper, TableContainer, Table, TableHead, TableRow, TableCell } from '@material-ui/core';
 import { useStyles } from '../styles/CustomStyles'
 
 const TableComponent = (props: any) => {
     const classes = useStyles();
+    console.log(props.districts)
     return (
         <TableContainer component={Paper}>
             <Table className={classes.table} size="small" aria-label="simple table">
@@ -21,7 +22,7 @@ const TableComponent = (props: any) => {
                     </TableRow>
                 </TableHead>
                 {props.districts ? props.districts.map((dist: any) => {
-                    return <TableRow onClick={() => {
+                    return <TableRow className={classes.hoverEffect} onClick={() => {
                         props.history.push({
                             pathname: '/tk/:id',
                             search: `?tiknum=${dist.tiknum}`
@@ -32,7 +33,7 @@ const TableComponent = (props: any) => {
                         <TableCell align="right">{dist.official ? dist.official : <p>нет данных</p>}</TableCell>
                     </TableRow>
                 }) : props.uiks ? props.uiks.map((uik: any) => {
-                    return <TableRow onClick={() => {
+                    return <TableRow className={classes.hoverEffect} onClick={() => {
                         props.history.push({
                             pathname: '/uik/:id',
                             search: `?uikId=${uik.uik_id}`
@@ -51,3 +52,5 @@ const TableComponent = (props: any) => {
 }
 
 export default TableComponent
+
+

@@ -1,23 +1,22 @@
 import React from 'react';
 import queryString from 'query-string';
-import { Typography, Container, Grid, Divider } from '@material-ui/core';
+import { Typography, Container, Grid } from '@material-ui/core';
 import '../styles/landingpg.css';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import Chart from './Chart';
-import TableComponent from './TableComponent';
 
 const PollingPage = (props: any) => {
-    const uikId = queryString.parse(props.location.search)
+    const { uikId } = queryString.parse(props.location.search)
     const fetchData = async () => {
-        const res: any = await axios.get('/republic/');
+        const res: any = await axios.get(`/get_uik/${uikId}`);
         return res
     }
-    const { data, status } = useQuery('republic', fetchData)
-    console.log(uikId)
+    const { data, status } = useQuery('uik', fetchData)
+    console.log(data?.data?.data)
     return (
         <Container maxWidth="md">
-            <Typography variant="h5" align="center" >Общее кол-во проголосовавших по Республики </Typography>
+            <Typography variant="h5" align="center" >{data?.data?.data?.uik_name}</Typography>
             <main className="landing-pg">
                 <Grid container
                     spacing={1}
@@ -26,17 +25,10 @@ const PollingPage = (props: any) => {
                     justifyContent="space-between"
                 >
                     <Grid item xs={12} >
-                        <Typography variant="subtitle2" align="left"  >График количества проголосовавших</Typography>
+                        <Typography variant="subtitle2" align="left"  >График количества проголосовавших [{data?.data?.data?.uik_name}]</Typography>
                         <Typography variant="h6" align="center"  >19 Сентября 2021</Typography>
                     </Grid>
-                    <Chart data={data?.data?.votes_data} status={status} />
-                    <hr className='divider' />
-                    <Grid item xs={12}>
-                        <Typography align="center" variant="h6">Общее кол-во проголосовавших по ТИКам</Typography>
-                    </Grid>
-                    <Grid item xs={12}  >
-                        <TableComponent districts={data?.data?.districts} status={status} history={props.history} />
-                    </Grid>
+                    <Chart data={data?.data?.data?.votes_data} status={status} />
                 </Grid>
             </main>
         </Container>
