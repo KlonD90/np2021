@@ -28,5 +28,11 @@ export const useStyles = makeStyles({
             background: "#D4F1F4",
             cursor: "pointer"
         }
+    },
+    toolBar: {
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "rgba(177, 191, 204, 0.8)",
+        minHeight: "14px"
     }
 })

@@ -27,7 +27,6 @@ const DistrictPage = (props: any) => {
                 >
                     <Grid item xs={12} >
                         <Typography variant="subtitle2" align="left"  >График количества проголосовавших [{data?.data?.data?.tik_name}]</Typography>
-                        <Typography variant="h6" align="center"  >19 Сентября 2021</Typography>
                     </Grid>
                     <Chart data={data?.data?.data?.votes_data} status={status} />
                     <hr className='divider' />
