@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/styles';
-import { relative } from 'path';
 
 
 export const useStyles = makeStyles({
@@ -33,6 +32,9 @@ export const useStyles = makeStyles({
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "rgba(177, 191, 204, 0.8)",
-        minHeight: "14px"
+        minHeight: "14px",
+        position: "absolute",
+        width: "100%",
+        bottom: "0"
     }
 })

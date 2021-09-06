@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,300&display=swap');
 .chart-container{
     margin: 2em 0;
     width: 96%;
@@ -8,6 +9,7 @@
 }
 
 .fontName {
-    font: normal normal 900 9px/12px Roboto; 
+    font: normal normal 600 16px Roboto; 
     letter-spacing: -0.29px;
+    font-family: Roboto;
   }

@@ -5,11 +5,11 @@ import { useStyles } from '../styles/CustomStyles';
 const Footer = () => {
     const classes = useStyles();
     return (
-        <Container maxWidth="md">
-            <Toolbar className={classes.toolBar} >
-                <Typography align="center">Barathrum&Co</Typography>
-            </Toolbar>
-        </Container>
+
+        <Toolbar className={classes.toolBar} >
+            <Typography align="center">Barathrum&Co</Typography>
+        </Toolbar>
+
     )
 }
 

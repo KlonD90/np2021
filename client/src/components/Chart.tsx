@@ -11,7 +11,7 @@ const Chart = (props: any) => {
     // console.log(dateToCompare)
     return (
         <div className="chart-container">
-            <ResponsiveContainer minWidth="800px">
+            <ResponsiveContainer minWidth="800px" >
                 {props.data ?
                     <AreaChart
                         height={400}
@@ -46,24 +46,23 @@ const Chart = (props: any) => {
                                 return format(date, "HH:mm")
                             }} />
                         {props.electors ?
-                            <YAxis dataKey="amount" domain={[0, (dataMax: any) => (props.electors)]} /> :
+                            <YAxis fontFamily={'Roboto, sans-serif'} dataKey="amount" domain={[0, (dataMax: any) => (props.electors)]} /> :
                             <YAxis dataKey="amount"
                                 fontFamily={'Roboto, sans-serif'}
                             />}
                         {props.data.map((votesData: any) => {
                             if (votesData.vote_date === "2021-08-11 20:00:00") {
-                                return <ReferenceArea x1="2021-08-11 09:00:00" x2="2021-08-11 18:00:00" fill="yellow" label={format(parseISO(votesData.vote_date), "PPP")} />
+                                return <ReferenceArea className="fontName" x1="2021-08-11 09:00:00" x2="2021-08-11 18:00:00" fill="yellow" label={format(parseISO(votesData.vote_date), "PPP")} />
                             } else if (votesData.vote_date === "2021-08-11 18:00:00") {
-                                return <ReferenceArea x1="2021-08-11 18:00:00" x2="2021-08-11 20:00:00" fill="blue" label={format(parseISO(votesData.vote_date), "PPP")} />
+                                return <ReferenceArea className="fontName" x1="2021-08-11 18:00:00" x2="2021-08-11 20:00:00" fill="blue" label={format(parseISO(votesData.vote_date), "PPP")} />
                             } else if (votesData.vote_date === "2021-08-12 20:00:00") {
-                                return <ReferenceArea x1="2021-08-13 09:00:00" x2="2021-08-13 20:00:00" fill="white" label={format(parseISO(votesData.vote_date), "PPP")} />
+                                return <ReferenceArea className="fontName" x1="2021-08-13 09:00:00" x2="2021-08-13 20:00:00" fill="white" label={format(parseISO(votesData.vote_date), "PPP")} />
                             }
                         })
                         }
                         <Tooltip />
                         <CartesianGrid opacity={0.9} vertical={false} />
-                        <Legend fontFamily={'Roboto, sans-serif'} className="fontName" />
-                        {/* <Line type="monotone" dataKey="amount" stroke="#8884d8" activeDot={{ r: 8 }} /> */}
+                        <Legend className="fontName" />
                     </AreaChart>
 
                     :
