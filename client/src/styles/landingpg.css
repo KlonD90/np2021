@@ -10,3 +10,10 @@
     height: 400px;
 
 }
+
+.divider{
+    width: 95%;
+    margin-bottom: 2em;
+    background-color: black;
+    border-top: 1px solid #8c8b8b;
+}

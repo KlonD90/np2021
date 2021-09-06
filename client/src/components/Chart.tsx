@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useElementSize } from './ResizeHook';
-import { AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid } from 'recharts';
+import { AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, } from 'recharts';
 import { format, parseISO } from 'date-fns';
 import '../styles/chart.css';
 
@@ -11,6 +11,7 @@ const Chart = (props: any) => {
         <div className='chart-container' ref={containerRef} style={{ width: "100%", overflow: "hidden" }}>
             {props.data ?
                 <AreaChart
+
                     height={400}
                     width={width}
                     data={props.data}
@@ -37,7 +38,7 @@ const Chart = (props: any) => {
                         }
                         return format(date, "HH:mm")
                     }} />
-                    <YAxis dataKey="amount" />
+                    {props.electors ? <YAxis dataKey="amount" domain={[0, (dataMax: any) => (props.electors)]} /> : <YAxis dataKey="amount" />}
                     <Tooltip />
                     <CartesianGrid opacity={0.9} vertical={false} />
                 </AreaChart>
