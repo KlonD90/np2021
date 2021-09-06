@@ -1,41 +1,34 @@
-import React from 'react';
-import { Typography, Container, Grid, Box, } from '@material-ui/core';
-import Logo from '../images/np_logo.png'
-import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
-import { format, parseISO } from 'date-fns';
-import axios from 'axios';
-import { useQuery } from 'react-query';
-import { useElementSize } from './ResizeHook';
+import React, { useEffect, useState } from 'react';
+import { Typography, Container, Grid, Box,Card, CardContent, Paper } from '@material-ui/core';
+import Logo from '../images/np_logo.png';
+import HeaderInfoBar from './HeaderInfoBar';
 
 const Header = () => {
+    const [widthSize, setWidthSize] = useState(0)
 
-    const fetchData = async () => {
-        const res: any = await axios.get('/republic/');
-        return res
-    }
-    const { data, status } = useQuery('republic', fetchData)
-    const lastUpdate = data?.data?.votes_data.sort((a: any, b: any) => {
-        const date = parseISO(a.vote_date).getTime()
-        const date2 = parseISO(b.vote_date).getTime()
-        return date2 - date
-    })[0]
+    useEffect(() => {
+        setWidthSize(window.innerWidth)
+        window.addEventListener('resize', () => {
+            setWidthSize(window.innerWidth)
+        })
+    }, [])
+
+ 
     return (
-        <Container>
+        <Container maxWidth="md">
             <Grid
+                item
                 container
-                direction="row"
+                xs={12}
+                direction={widthSize > 750 ? "row" : "column"}
                 wrap="wrap"
                 alignItems="center"
-                justifyContent="space-between">
+                justifyContent="center">
                 <Grid item xs={3}>
                     <img src={Logo} />
                 </Grid>
-
                 <Grid item xs={9} >
-                    <Grid container direction="row" alignItems="center">
-                        <SupervisedUserCircleIcon />
-                        <Typography align="center">По данным НП по состоянию на {lastUpdate ? lastUpdate.vote_date : status} всего проголосовало {lastUpdate ? lastUpdate.amount : status} </Typography>
-                    </Grid>
+                    <HeaderInfoBar />
                 </Grid>
             </Grid>
         </Container>

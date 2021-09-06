@@ -1,13 +1,6 @@
 import React from 'react';
 import { Typography, Container, Grid, Box, Paper, TableContainer, Table, TableHead, TableRow, TableCell } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
-const useStyles = makeStyles({
-    table: {
-        width: "100%",
-        display: 'block',
-        overflowX: 'auto'
-    }
-})
+import { useStyles } from '../styles/CustomStyles'
 
 const TableComponent = (props: any) => {
     const classes = useStyles();
@@ -38,7 +31,20 @@ const TableComponent = (props: any) => {
                         <TableCell align="right">{dist.votes}</TableCell>
                         <TableCell align="right">{dist.official ? dist.official : <p>нет данных</p>}</TableCell>
                     </TableRow>
-                }) : <p>{props.status}</p>}
+                }) : props.uiks ? props.uiks.map((uik: any) => {
+                    return <TableRow onClick={() => {
+                        props.history.push({
+                            pathname: '/uik/:id',
+                            search: `?uikId=${uik.uik_id}`
+                        })
+                    }} key={uik.uik_id}>
+                        <TableCell align="right">{uik.uik_name}</TableCell>
+                        <TableCell align="right">{uik.votes_amount}</TableCell>
+                        <TableCell align="right">{uik.official ? uik.official : <p>нет данных</p>}</TableCell>
+                    </TableRow>
+                }) : <p>{props.status}</p>
+
+                }
             </Table>
         </TableContainer>
     )
