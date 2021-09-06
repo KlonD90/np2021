@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useElementSize } from './ResizeHook';
-import { AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, ReferenceArea, ResponsiveContainer } from 'recharts';
+import { AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, ReferenceArea, ResponsiveContainer, Legend, Line } from 'recharts';
 import { format, parseISO } from 'date-fns';
 import '../styles/chart.css';
 
@@ -32,7 +32,7 @@ const Chart = (props: any) => {
                                 </stop>
                             </linearGradient>
                         </defs>
-                        <Area dataKey="amount" stroke="#2451B7" fill="url(#color)" />
+                        <Area name="кол-во проголосовавших по данным НП" dataKey="amount" stroke="black" fill="url(#color)" />
                         <XAxis
                             angle={width <= 478 ? -45 : 0}
                             interval={0}
@@ -59,6 +59,8 @@ const Chart = (props: any) => {
                         }
                         <Tooltip />
                         <CartesianGrid opacity={0.9} vertical={false} />
+                        <Legend />
+                        {/* <Line type="monotone" dataKey="amount" stroke="#8884d8" activeDot={{ r: 8 }} /> */}
                     </AreaChart>
 
                     :

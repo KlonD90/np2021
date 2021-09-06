@@ -6,6 +6,7 @@ import LandingPage from './components/LandingPage';
 import DistrictPage from './components/DistrictPage';
 import PollingPage from './components/PollingPage';
 import Header from './components/Header';
+import Footer from './components/Footer';
 const queryClient = new QueryClient()
 
 
@@ -19,6 +20,7 @@ function App() {
           <Route exact path='/tk/:id' component={DistrictPage} />
           <Route exact path='/uik/:id' component={PollingPage} />
         </Switch>
+        <Footer />
       </BrowserRouter>
     </QueryClientProvider>
   );
