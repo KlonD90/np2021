@@ -2,10 +2,8 @@
 .chart-container{
     margin: 2em 0;
     width: 96%;
-    overflow-x: scroll;
-    -ms-overflow-style: none; 
-    scrollbar-width: none; /* Firefox */
-    height: 400px;
+    overflow: hidden;
+    height: 40%;
 }
 
 .fontName {

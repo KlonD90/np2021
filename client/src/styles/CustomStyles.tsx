@@ -33,7 +33,7 @@ export const useStyles = makeStyles({
         justifyContent: "center",
         backgroundColor: "rgba(177, 191, 204, 0.8)",
         minHeight: "14px",
-        position: "absolute",
+        position: "relative",
         width: "100%",
         bottom: "0"
     }

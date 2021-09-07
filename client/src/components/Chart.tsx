@@ -4,18 +4,19 @@ import { AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, ReferenceArea, R
 import { format, parseISO } from 'date-fns';
 import '../styles/chart.css';
 
+
 const Chart = (props: any) => {
     const containerRef = useRef<HTMLDivElement>(null);
+
     const [width, height] = useElementSize(containerRef);
-    // const dateToCompare = props.data[0].vote_date
-    // console.log(dateToCompare)
+
     return (
-        <div className="chart-container">
-            <ResponsiveContainer minWidth="800px" >
-                {props.data ?
+        <ResponsiveContainer width="100%" aspect={1}>
+            {
+                props.data ?
                     <AreaChart
-                        height={400}
                         width={600}
+                        height={400}
                         data={props.data}
                         margin={{
                             top: 5,
@@ -35,8 +36,8 @@ const Chart = (props: any) => {
                         <Area name="кол-во проголосовавших по данным НП" dataKey="amount" stroke="black" fill="url(#color)" />
                         <XAxis
                             fontFamily={'Roboto, sans-serif'}
-                            angle={width <= 478 ? -45 : 0}
-                            interval={0}
+                            angle={-50}
+                            interval="preserveEnd"
                             dataKey="vote_date"
                             tickFormatter={str => {
                                 const date = parseISO(str)
@@ -46,7 +47,12 @@ const Chart = (props: any) => {
                                 return format(date, "HH:mm")
                             }} />
                         {props.electors ?
-                            <YAxis fontFamily={'Roboto, sans-serif'} dataKey="amount" domain={[0, (dataMax: any) => (props.electors)]} /> :
+                            <YAxis
+                                fontFamily={'Roboto, sans-serif'}
+                                dataKey="amount"
+                                domain={[0, (dataMax: any) => (props.electors)]}
+                                interval="preserveEnd"
+                            /> :
                             <YAxis dataKey="amount"
                                 fontFamily={'Roboto, sans-serif'}
                             />}
@@ -66,9 +72,9 @@ const Chart = (props: any) => {
                     </AreaChart>
 
                     :
-                    <p>{props.sstatus}</p>}
-            </ResponsiveContainer>
-        </div>
+                    <p>{props.sstatus}</p>
+            }
+        </ResponsiveContainer>
     );
 }
 

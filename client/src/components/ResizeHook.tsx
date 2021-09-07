@@ -13,6 +13,7 @@ export const useElementSize = <T extends HTMLElement>(
                     elementRef?.current?.clientHeight || 0,
                 ]);
             };
+            console.log(elementRef.current.clientHeight)
             window.addEventListener('resize', updateSize);
             updateSize();
             return () => window.removeEventListener('resize', updateSize);
