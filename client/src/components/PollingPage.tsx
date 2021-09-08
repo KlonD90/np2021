@@ -13,7 +13,6 @@ const PollingPage = (props: any) => {
         return res
     }
     const { data, status } = useQuery('uik', fetchData)
-    console.log(data?.data?.data)
     return (
         <Container maxWidth="md">
             <Typography variant="h5" align="center" >{data?.data?.data?.uik_name}</Typography>

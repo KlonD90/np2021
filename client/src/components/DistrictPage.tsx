@@ -14,7 +14,6 @@ const DistrictPage = (props: any) => {
         return res
     }
     const { data, status } = useQuery('get_tik', fetchData)
-    console.log(data)
     return (
         <Container maxWidth="md">
             <Typography variant="h5" align="center" >{data?.data?.data?.tik_name} </Typography>

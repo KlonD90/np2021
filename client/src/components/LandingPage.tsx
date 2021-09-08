@@ -32,7 +32,7 @@ const LandingPage = (props: any) => {
                     <Grid item xs={12}>
                         <Typography align="center" variant="h6">Общее кол-во проголосовавших по ТИКам</Typography>
                     </Grid>
-                    <Grid item xs={12}  >
+                    <Grid item xs={12}>
                         <TableComponent districts={data?.data?.districts} status={status} history={props.history} />
                     </Grid>
                 </Grid>
