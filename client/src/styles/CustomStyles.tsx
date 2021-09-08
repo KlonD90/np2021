@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/styles';
+import { relative } from 'path';
 
 
 export const useStyles = makeStyles({
@@ -36,5 +37,9 @@ export const useStyles = makeStyles({
         position: "relative",
         width: "100%",
         bottom: "0"
+    },
+    gridItem: {
+        postion: "relative",
+        marginTop: "6em"
     }
 })

@@ -22,13 +22,12 @@ const Header = () => {
                 container
                 xs={12}
                 direction={widthSize > 750 ? "row" : "column"}
-                wrap="wrap"
                 alignItems="center"
                 justifyContent="center">
-                <Grid item xs={3} >
+                <Grid item xs={widthSize > 750 ? 3 : 12} >
                     <img src={Logo} />
                 </Grid>
-                <Grid item xs={9} >
+                <Grid item xs={widthSize > 750 ? 9 : 12} >
                     <HeaderInfoBar />
                 </Grid>
             </Grid>

@@ -15,13 +15,13 @@ const TableComponent = (props: any) => {
         <Table className={classes.table} size="medium" aria-label="simple table" padding={width < 767 ? "none" : "default"}>
             <TableHead>
                 <TableRow>
-                    <TableCell align="right">
+                    <TableCell align="center">
                         ТИК
                     </TableCell>
-                    <TableCell align="right">
+                    <TableCell align="center">
                         Кол-во голосов
                     </TableCell>
-                    <TableCell align="right">
+                    <TableCell align="center">
                         Кол-во голосов(официально)
                     </TableCell>
                 </TableRow>
@@ -34,8 +34,8 @@ const TableComponent = (props: any) => {
                     })
                 }} key={dist.tiknum}>
                     <TableCell align="right">{dist.tik_name}</TableCell>
-                    <TableCell align="right">{dist.votes}</TableCell>
-                    <TableCell align="right">{dist.official ? dist.official : <p>нет данных</p>}</TableCell>
+                    <TableCell align="center">{dist.votes}</TableCell>
+                    <TableCell align="center">{dist.official ? dist.official : <p>нет данных</p>}</TableCell>
                 </TableRow>
             }) : props.uiks ? props.uiks.map((uik: any) => {
                 return <TableRow className={classes.hoverEffect} onClick={() => {
