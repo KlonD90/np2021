@@ -12,46 +12,48 @@ const TableComponent = (props: any) => {
     }, [])
     const classes = useStyles();
     return (
-        <Table className={classes.table} size="medium" aria-label="simple table" padding={width < 767 ? "none" : "default"}>
-            <TableHead>
-                <TableRow>
-                    <TableCell align="center">
-                        ТИК
-                    </TableCell>
-                    <TableCell align="center">
-                        Кол-во голосов
-                    </TableCell>
-                    <TableCell align="center">
-                        Кол-во голосов(официально)
-                    </TableCell>
-                </TableRow>
-            </TableHead>
-            {props.districts ? props.districts.map((dist: any) => {
-                return <TableRow className={classes.hoverEffect} onClick={() => {
-                    props.history.push({
-                        pathname: '/tk/:id',
-                        search: `?tiknum=${dist.tiknum}`
-                    })
-                }} key={dist.tiknum}>
-                    <TableCell align="right">{dist.tik_name}</TableCell>
-                    <TableCell align="center">{dist.votes}</TableCell>
-                    <TableCell align="center">{dist.official ? dist.official : <p>нет данных</p>}</TableCell>
-                </TableRow>
-            }) : props.uiks ? props.uiks.map((uik: any) => {
-                return <TableRow className={classes.hoverEffect} onClick={() => {
-                    props.history.push({
-                        pathname: '/uik/:id',
-                        search: `?uikId=${uik.uik_id}`
-                    })
-                }} key={uik.uik_id}>
-                    <TableCell align="right">{uik.uik_name}</TableCell>
-                    <TableCell align="right">{uik.votes_amount}</TableCell>
-                    <TableCell align="right">{uik.official ? uik.official : <p>нет данных</p>}</TableCell>
-                </TableRow>
-            }) : <p>{props.status}</p>
+        <TableContainer>
+            <Table className={classes.table} size="medium" aria-label="simple table" padding={767 > width ? "none" : "normal"} >
+                <TableHead>
+                    <TableRow  >
+                        <TableCell align="center">
+                            ТИК
+                        </TableCell>
+                        <TableCell align="center">
+                            Кол-во голосов
+                        </TableCell>
+                        <TableCell align="center">
+                            Кол-во голосов(официально)
+                        </TableCell>
+                    </TableRow>
+                </TableHead>
+                {props.districts ? props.districts.map((dist: any) => {
+                    return <TableRow className={classes.hoverEffect} onClick={() => {
+                        props.history.push({
+                            pathname: '/tk/:id',
+                            search: `?tiknum=${dist.tiknum}`
+                        })
+                    }} key={dist.tiknum}>
+                        <TableCell align="right">{dist.tik_name}</TableCell>
+                        <TableCell align="center">{dist.votes}</TableCell>
+                        <TableCell align="center">{dist.official ? dist.official : <p>нет данных</p>}</TableCell>
+                    </TableRow>
+                }) : props.uiks ? props.uiks.map((uik: any) => {
+                    return <TableRow className={classes.hoverEffect} onClick={() => {
+                        props.history.push({
+                            pathname: '/uik/:id',
+                            search: `?uikId=${uik.uik_id}`
+                        })
+                    }} key={uik.uik_id}>
+                        <TableCell align="right">{uik.uik_name}</TableCell>
+                        <TableCell align="right">{uik.votes_amount}</TableCell>
+                        <TableCell align="right">{uik.official ? uik.official : <p>нет данных</p>}</TableCell>
+                    </TableRow>
+                }) : <p>{props.status}</p>
 
-            }
-        </Table>
+                }
+            </Table>
+        </TableContainer>
     )
 }
 

@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 import { relative } from 'path';
+import { isWhiteSpaceLike } from 'typescript';
 
 
 export const useStyles = makeStyles({
@@ -7,6 +8,10 @@ export const useStyles = makeStyles({
         width: "100%",
         display: 'block',
         overflow: "hidden",
+        alignSelf: "center",
+    },
+    header: {
+        color: "white"
     },
     paper: {
         width: "100%",
@@ -32,9 +37,9 @@ export const useStyles = makeStyles({
     toolBar: {
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "rgba(177, 191, 204, 0.8)",
+        backgroundColor: "rgba(177, 191, 204, 1)",
         minHeight: "14px",
-        position: "relative",
+        position: "fixed",
         width: "100%",
         bottom: "0"
     },

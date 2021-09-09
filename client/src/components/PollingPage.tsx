@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import queryString from 'query-string';
-import { Typography, Container, Grid } from '@material-ui/core';
-import '../styles/landingpg.css';
+import { Typography, Container, Grid, Card } from '@material-ui/core';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import Chart from './Chart';
+import { useResizeObserver } from './useResizeObserver';
+import { useStyles } from '../styles/CustomStyles';
 
 const PollingPage = (props: any) => {
     const [refetchInterval, setRefetchInterval] = useState(6000);
+    const chartNode = useRef(null)
+    const dimensions = useResizeObserver(chartNode)
+    const classes = useStyles();
     const { uikId } = queryString.parse(props.location.search)
     const fetchData = async () => {
         const res: any = await axios.get(`/get_uik/${uikId}`);
@@ -21,21 +25,42 @@ const PollingPage = (props: any) => {
         }
     }, [])
     return (
-        <Container maxWidth="md">
-            <Typography variant="h5" align="center" >{data?.data?.data?.uik_name}</Typography>
-            <main className="landing-pg">
-                <Grid container
-                    spacing={1}
-                    direction="column"
-                    alignItems="center"
-                    justifyContent="space-between"
-                >
-                    <Grid item xs={12} >
-                        <Typography variant="subtitle2" align="left"  >График количества проголосовавших [{data?.data?.data?.uik_name}]</Typography>
-                    </Grid>
-                    <Chart electors={data?.data?.data.electors} data={data?.data?.data?.votes_data} status={status} />
+        <Container maxWidth="md" ref={chartNode}>
+            <Grid container
+                spacing={3}
+                direction="column"
+                alignItems="center"
+                justifyContent="space-between"
+            >
+                <Grid item>
+                    <Typography className={classes.header} variant="h4" align="center" >{data?.data?.data?.uik_name}</Typography>
                 </Grid>
-            </main>
+
+                {dimensions &&
+                    <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
+                        <Card>
+                            <Grid
+                                style={{ width: dimensions?.width, height: "auto" }}
+                                container
+                                spacing={3}
+                                direction="column"
+                                alignItems="center"
+                                justifyContent="space-between">
+                                <Grid item xs={12} >
+                                    <Typography variant="h6" align="center"  >График количества проголосовавших</Typography>
+                                </Grid>
+                                <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
+
+                                    <Chart data={data?.data?.data?.votes_data} status={status} electors={data?.data?.data?.electors} />
+                                </Grid>
+                            </Grid>
+                        </Card>
+                    </Grid>
+
+                }
+
+
+            </Grid>
         </Container>
     )
 }

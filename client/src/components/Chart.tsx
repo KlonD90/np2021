@@ -7,7 +7,7 @@ import '../styles/chart.css';
 
 const Chart = (props: any) => {
     return (
-        <ResponsiveContainer className="chart-container" width="100%" aspect={1.2}>
+        <ResponsiveContainer className="chart-container" width="100%" height="70%" aspect={2}>
             {
                 props.data ?
                     <ComposedChart
@@ -29,7 +29,7 @@ const Chart = (props: any) => {
                                 </stop>
                             </linearGradient>
                         </defs>
-                        <Line name="кол-во проголосовавших по данным НП" dataKey="amount" stroke="green" fill="url(#color)" activeDot={{ r: 6 }} />
+                        <Line name="кол-во проголосовавших по данным НП" dataKey="amount" stroke="green" />
 
                         <XAxis
                             fontFamily={'Roboto, sans-serif'}
@@ -70,15 +70,10 @@ const Chart = (props: any) => {
                             }
                         })
                         }
-                        {props.data.map((votesData: any) => {
-                            if (votesData.amount && votesData.amount_official) {
-                                return <ReferenceLine x={votesData.vote_date} stroke="blue" label="" />
-
-                            }
-                        })}
+                        <Legend className="fontName" />
                         <Tooltip />
                         <CartesianGrid strokeDasharray="3 3" opacity={0.5} />
-                        <Legend className="fontName" wrapperStyle={{ position: 'relative', marginTop: '0.5em' }} />
+
                     </ComposedChart>
 
                     :
@@ -91,3 +86,10 @@ const Chart = (props: any) => {
 export default Chart
 
 {/* <div className='chart-container' ref={containerRef} style={{ width: "100%", overflow: "hidden" }}> */ }
+
+// {props.data.map((votesData: any) => {
+//     if (votesData.amount && votesData.amount_official) {
+//         return <ReferenceLine x={votesData.vote_date} stroke="blue" label="" />
+
+//     }
+// })}
