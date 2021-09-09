@@ -1,8 +1,13 @@
-.chart-container{
-    margin: 2em 0;
-    width: 96%;
-    overflow-x: scroll;
-    -ms-overflow-style: none; 
-    scrollbar-width: none; /* Firefox */
-    height: 400px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,300&display=swap');
+/* .chart-container{
+    width: 100%;
+    overflow: hidden;
+    border-radius: 1em;
+    height: 40%;
+} */
+
+.fontName {
+    font: normal normal 600 16px Roboto; 
+    letter-spacing: -0.29px;
+    font-family: Roboto;
+  }

@@ -1,75 +1,95 @@
-import React, { useRef } from 'react'
-import { useElementSize } from './ResizeHook';
-import { AreaChart, XAxis, YAxis, Area, Tooltip, CartesianGrid, ReferenceArea, ResponsiveContainer, Legend, Line } from 'recharts';
+import React from 'react'
+import { ComposedChart, Bar, XAxis, YAxis, Line, Tooltip, CartesianGrid, ReferenceArea, ResponsiveContainer, Legend, ReferenceLine } from 'recharts';
 import { format, parseISO } from 'date-fns';
 import '../styles/chart.css';
 
+//how to make reference line https://github.com/recharts/recharts/issues/817
+
 const Chart = (props: any) => {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [width, height] = useElementSize(containerRef);
-    // const dateToCompare = props.data[0].vote_date
-    // console.log(dateToCompare)
     return (
-        <div className="chart-container">
-            <ResponsiveContainer minWidth="800px">
-                {props.data ?
-                    <AreaChart
-                        height={400}
+        <ResponsiveContainer className="chart-container" width="100%" height="70%" aspect={2}>
+            {
+                props.data ?
+                    <ComposedChart
                         width={600}
+                        height={400}
                         data={props.data}
                         margin={{
-                            top: 5,
+                            top: 0,
                             right: 30,
                             left: 20,
-                            bottom: 5,
+                            bottom: 0,
                         }}
                     >
                         <defs>
-                            <linearGradient id="color" x1="0" y1="0" x2="0" y2="1" >
+                            <linearGradient id="color" x1="0" y1="0" x2="0" y2="01" >
                                 <stop offset="0%" stopColor="#2451B7" stopOpacity={0.4}>
                                 </stop>
                                 <stop offset="75%" stopColor="#2451B7" stopOpacity={0.05}>
                                 </stop>
                             </linearGradient>
                         </defs>
-                        <Area name="кол-во проголосовавших по данным НП" dataKey="amount" stroke="black" fill="url(#color)" />
+                        <Line name="кол-во проголосовавших по данным НП" dataKey="amount" stroke="green" />
+
                         <XAxis
-                            angle={width <= 478 ? -45 : 0}
-                            interval={0}
+                            fontFamily={'Roboto, sans-serif'}
+                            angle={-50}
+                            interval="preserveEnd"
                             dataKey="vote_date"
+                            tickMargin={12}
                             tickFormatter={str => {
                                 const date = parseISO(str)
-                                if (width <= 600) {
-                                    return format(date, "HH")
-                                }
-                                return format(date, "HH:mm")
+                                return format(date, "HH")
                             }} />
                         {props.electors ?
-                            <YAxis dataKey="amount" domain={[0, (dataMax: any) => (props.electors)]} /> :
-                            <YAxis dataKey="amount" />}
+                            <YAxis
+                                fontFamily={'Roboto, sans-serif'}
+                                dataKey="amount"
+                                domain={[0, (dataMax: any) => (props.electors)]}
+                                interval="preserveEnd"
+                            /> :
+                            <YAxis
+                                dataKey="amount"
+                                fontFamily={'Roboto, sans-serif'}
+                            />}
+                        <Bar
+                            name="кол-во проголосовавших по оф. данным"
+                            fontFamily={'Roboto, sans-serif'}
+                            dataKey="amount_official"
+                            fill="red"
+                            opacity="1"
+                        />
+
                         {props.data.map((votesData: any) => {
-                            if (votesData.vote_date === "2021-08-11 20:00:00") {
-                                return <ReferenceArea x1="2021-08-11 09:00:00" x2="2021-08-11 18:00:00" fill="yellow" label={format(parseISO(votesData.vote_date), "PPP")} />
-                            } else if (votesData.vote_date === "2021-08-11 18:00:00") {
-                                return <ReferenceArea x1="2021-08-11 18:00:00" x2="2021-08-11 20:00:00" fill="blue" label={format(parseISO(votesData.vote_date), "PPP")} />
-                            } else if (votesData.vote_date === "2021-08-12 20:00:00") {
-                                return <ReferenceArea x1="2021-08-13 09:00:00" x2="2021-08-13 20:00:00" fill="white" label={format(parseISO(votesData.vote_date), "PPP")} />
+                            if (votesData.vote_date === "2021-09-10 20:00:00") {
+                                return <ReferenceArea className="fontName" x1="2021-09-10 09:00:00" x2="2021-09-10 20:00:00" fill="yellow" label={{ value: "17 Сентябя" }} />
+                            } else if (votesData.vote_date === "2021-09-11 09:00:00") {
+                                return <ReferenceArea className="fontName" x1="2021-09-11 09:00:00" x2="2021-09-11 20:00:00" fill="blue" label={{ value: "18 Сентябя" }} />
+                            } else if (votesData.vote_date === "2021-09-12 09:00:00") {
+                                return <ReferenceArea className="fontName" x1="2021-09-12 09:00:00" x2="2021-09-12 20:00:00" fill="white" label={{ value: "19 Сентябя" }} />
                             }
                         })
                         }
+                        <Legend className="fontName" />
                         <Tooltip />
-                        <CartesianGrid opacity={0.9} vertical={false} />
-                        <Legend />
-                        {/* <Line type="monotone" dataKey="amount" stroke="#8884d8" activeDot={{ r: 8 }} /> */}
-                    </AreaChart>
+                        <CartesianGrid strokeDasharray="3 3" opacity={0.5} />
+
+                    </ComposedChart>
 
                     :
-                    <p>{props.sstatus}</p>}
-            </ResponsiveContainer>
-        </div>
+                    <p>{props.sstatus}</p>
+            }
+        </ResponsiveContainer>
     );
 }
 
 export default Chart
 
 {/* <div className='chart-container' ref={containerRef} style={{ width: "100%", overflow: "hidden" }}> */ }
+
+// {props.data.map((votesData: any) => {
+//     if (votesData.amount && votesData.amount_official) {
+//         return <ReferenceLine x={votesData.vote_date} stroke="blue" label="" />
+
+//     }
+// })}
