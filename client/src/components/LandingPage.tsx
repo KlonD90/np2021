@@ -84,7 +84,7 @@ const LandingPage = (props: any) => {
                                 </Grid>
                                 <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
 
-                                    <KalmMap districts={data?.data?.districts} />
+                                    <KalmMap districts={data?.data?.districts} status={props.status} />
                                 </Grid>
                             </Grid>
                         </Card>

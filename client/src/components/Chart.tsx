@@ -1,19 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ComposedChart, Bar, XAxis, YAxis, Line, Tooltip, CartesianGrid, ReferenceArea, ResponsiveContainer, Legend, ReferenceLine } from 'recharts';
 import { format, parseISO } from 'date-fns';
 import '../styles/chart.css';
 
 //how to make reference line https://github.com/recharts/recharts/issues/817
-
 const Chart = (props: any) => {
+    const [chartData, setChartData] = useState([])
+    useEffect(() => {
+        if (props.data) {
+            let i = 1;
+            const formattedData = props.data.map((votesData: any) => {
+                return {
+                    ...votesData,
+                    vote_date: [i++, votesData.vote_date]
+                }
+            })
+            setChartData(formattedData)
+        }
+    }, [props.data])
+
     return (
         <ResponsiveContainer className="chart-container" width="100%" height="70%" aspect={2}>
             {
-                props.data ?
+                chartData.length > 0 ?
                     <ComposedChart
                         width={600}
                         height={400}
-                        data={props.data}
+                        data={chartData}
                         margin={{
                             top: 0,
                             right: 30,
@@ -29,13 +42,12 @@ const Chart = (props: any) => {
                                 </stop>
                             </linearGradient>
                         </defs>
-                        <Line name="кол-во проголосовавших по данным НП" dataKey="amount" stroke="green" />
-
+                        <Line dot={false} name="кол-во проголосовавших по данным НП" dataKey="amount" stroke="green" />
                         <XAxis
                             fontFamily={'Roboto, sans-serif'}
                             angle={-50}
                             interval="preserveEnd"
-                            dataKey="vote_date"
+                            dataKey="vote_date[1]"
                             tickMargin={12}
                             tickFormatter={str => {
                                 const date = parseISO(str)
@@ -61,6 +73,7 @@ const Chart = (props: any) => {
                         />
 
                         {props.data.map((votesData: any) => {
+                            const time = votesData.vote_date
                             if (votesData.vote_date === "2021-09-10 20:00:00") {
                                 return <ReferenceArea className="fontName" x1="2021-09-10 09:00:00" x2="2021-09-10 20:00:00" fill="yellow" label={{ value: "17 Сентябя" }} />
                             } else if (votesData.vote_date === "2021-09-11 09:00:00") {
@@ -77,7 +90,7 @@ const Chart = (props: any) => {
                     </ComposedChart>
 
                     :
-                    <p>{props.sstatus}</p>
+                    <p>{props.status}</p>
             }
         </ResponsiveContainer>
     );
@@ -93,3 +106,31 @@ export default Chart
 
 //     }
 // })}
+
+
+// ticks={["9:00, 17.09",
+// "10:00, 17.09",
+// "11:00, 17.09",
+// "12:00, 17.09",
+// "13:00, 17.09",
+// "14:00, 17.09",
+// "15:00, 17.09",
+// "16:00, 17.09",
+// "17:00, 17.09",
+// "18:00, 17.09",
+// "19:00, 17.09",
+// "20:00, 17.09",
+// "9:00, 18.09",
+// "10:00, 18.09",
+// "11:00, 18.09",
+// "12:00, 18.09",
+// "13:00, 18.09",
+// "14:00, 18.09",
+// "15:00, 18.09",
+// "16:00, 18.09",
+// "17:00, 18.09",
+// "18:00, 18.09", "19:00, 18.09", "20:00, 18.09",
+// "9:00, 19.09", "10:00, 19.09", "11:00, 19.09",
+// "12:00, 19.09", "13:00, 19.09", "14:00, 19.09",
+// "15:00, 19.09", "16:00, 19.09", "17:00, 19.09",
+// "18:00, 19.09", "19:00, 19.09", "20:00, 19.09"]}
