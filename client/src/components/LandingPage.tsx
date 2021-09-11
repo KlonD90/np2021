@@ -8,6 +8,7 @@ import TableComponent from './TableComponent';
 import { useStyles } from '../styles/CustomStyles';
 import KalmMap from './KalmMap';
 import { useResizeObserver } from './useResizeObserver';
+import { couldStartTrivia } from 'typescript';
 
 
 const LandingPage = (props: any) => {
@@ -19,7 +20,7 @@ const LandingPage = (props: any) => {
         const res: any = await axios.get('/republic/');
         return res
     }
-    // console.log(dimensions)
+
     const { data, status } = useQuery('republic', fetchData, { refetchInterval })
     useEffect(() => {
         setRefetchInterval(6000)
@@ -59,7 +60,7 @@ const LandingPage = (props: any) => {
                                 <Grid item xs={9} >
                                     <Typography variant="h6" align="center"  >График количества проголосовавших</Typography>
                                 </Grid>
-                                <Grid item xs={width < 767 ? 12 : 9} style={{ width: dimensions?.width, height: "auto" }} >
+                                <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
 
                                     <Chart data={data?.data?.votes_data} status={status} electors={data?.data?.electors} />
                                 </Grid>
