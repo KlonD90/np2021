@@ -1,11 +1,9 @@
 import React from 'react';
-import { Typography, Container, Grid, Box, Card, CardContent, Paper } from '@material-ui/core';
+import { Typography, Paper } from '@material-ui/core';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
-import { format, parseISO } from 'date-fns';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 import { useStyles } from '../styles/CustomStyles';
-
 
 const HeaderInfoBar = () => {
     const classes = useStyles();

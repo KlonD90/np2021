@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Typography, Container, Grid, Paper, Card } from '@material-ui/core';
+import { Typography, Container, Grid, Card } from '@material-ui/core';
 import '../styles/chart.css'
 import { useQuery } from 'react-query';
 import axios from 'axios';
@@ -8,11 +8,11 @@ import TableComponent from './TableComponent';
 import { useStyles } from '../styles/CustomStyles';
 import KalmMap from './KalmMap';
 import { useResizeObserver } from './useResizeObserver';
-import { couldStartTrivia } from 'typescript';
 
 
 const LandingPage = (props: any) => {
-    const [refetchInterval, setRefetchInterval] = useState(6000);
+    const [refetchInterval, setRefetchInterval] = useState(1000);
+    const [test, setTest] = useState(null);
     const chartNode = useRef(null)
     const dimensions = useResizeObserver(chartNode)
     const classes = useStyles();
@@ -23,18 +23,28 @@ const LandingPage = (props: any) => {
 
     const { data, status } = useQuery('republic', fetchData, { refetchInterval })
     useEffect(() => {
-        setRefetchInterval(6000)
+        // setTest(data?.data?.votes_data.slice(0, 10))
+        setRefetchInterval(1000)
         return () => {
             setRefetchInterval(10000000)
         }
     }, [])
-    const [width, setWidth] = useState(0)
-    useEffect(() => {
-        setWidth(window.innerWidth)
-        window.addEventListener('resize', () => {
-            setWidth(window.innerWidth)
-        })
-    }, [])
+
+    // This is fofr testing purposes =>
+    // useEffect(() => {
+    //     const testData2 = data?.data?.votes_data.slice(0, 20)
+    //     setTimeout(() => {
+    //         setTest(testData2)
+    //     }, 6100)
+    // }, [])
+
+    // useEffect(() => {
+    //     const testData3 = data?.data?.votes_data.slice(0, 34)
+    //     setTimeout(() => {
+    //         setTest(testData3)
+    //     }, 12100)
+    // }, [])
+
     return (
         <Container maxWidth="md" ref={chartNode}>
             <Grid container
