@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useRef, useEffect, } from 'react';
 import mapboxgl from 'mapbox-gl';
-// import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import "../styles/map.css";
 const accessToken: any = process.env.REACT_APP_MAPBOX_TOKEN
 mapboxgl.accessToken = accessToken;

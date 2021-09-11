@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ComposedChart, Bar, XAxis, YAxis, Line, Tooltip, CartesianGrid, ReferenceArea, ResponsiveContainer, Legend, ReferenceLine } from 'recharts';
+import { ComposedChart, Bar, XAxis, YAxis, Line, Tooltip, CartesianGrid, ReferenceArea, ReferenceLine, ResponsiveContainer, Legend, } from 'recharts';
 import { format, parseISO } from 'date-fns';
 import '../styles/chart.css';
 
@@ -82,12 +82,12 @@ const Chart = (props: any) => {
                         />
 
                         {props.data.map((votesData: any) => {
-                            if (votesData.vote_date === "2021-09-10 20:00:00") {
-                                return <ReferenceArea className="fontName" x1="2021-09-10 09:00:00" x2="2021-09-10 20:00:00" fill="white" label={{ value: "17 Сентябя" }} />
+                            if (votesData.vote_date === "2021-09-10 09:00:00") {
+                                return <ReferenceLine className="fontName" x="2021-09-10 09:00:00" x2="2021-09-10 20:00:00" fill="white" label={{ value: "17 Сентябя", position: "right", }} alwaysShow={true} />
                             } else if (votesData.vote_date === "2021-09-11 09:00:00") {
-                                return <ReferenceArea className="fontName" x1="2021-09-11 09:00:00" x2="2021-09-11 20:00:00" fill="rgba(186, 184, 184, 0.7)" label={{ value: "18 Сентябя" }} />
+                                return <ReferenceLine className="fontName" x="2021-09-11 09:00:00" x2="2021-09-11 20:00:00" fill="rgba(186, 184, 184, 0.7)" label={{ value: "18 Сентябя", position: "right", }} alwaysShow={true} />
                             } else if (votesData.vote_date === "2021-09-12 09:00:00") {
-                                return <ReferenceArea className="fontName" x1="2021-09-12 09:00:00" x2="2021-09-12 20:00:00" fill="rgba(143, 135, 135, 0.7)" label={{ value: "19 Сентябя" }} />
+                                return <ReferenceLine className="fontName" x="2021-09-12 09:00:00" x2="2021-09-12 20:00:00" fill="rgba(143, 135, 135, 0.7)" label={{ value: "19 Сентябя", position: "right", }} alwaysShow={true} />
                             }
                         })
                         }
@@ -104,10 +104,6 @@ const Chart = (props: any) => {
 }
 
 export default Chart
-
-{/* <div className='chart-container' ref={containerRef} style={{ width: "100%", overflow: "hidden" }}> */ }
-
-// {props.data.map((votesData: any) => {
 //     if (votesData.amount && votesData.amount_official) {
 //         return <ReferenceLine x={votesData.vote_date} stroke="blue" label="" />
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Paper, TableContainer, Table, TableHead, TableRow, TableCell } from '@material-ui/core';
+import { TableContainer, Table, TableHead, TableRow, TableCell } from '@material-ui/core';
 import { useStyles } from '../styles/CustomStyles'
 
 const TableComponent = (props: any) => {
