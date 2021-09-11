@@ -24,6 +24,13 @@ const PollingPage = (props: any) => {
             setRefetchInterval(10000000)
         }
     }, [])
+    const [width, setWidth] = useState(0)
+    useEffect(() => {
+        setWidth(window.innerWidth)
+        window.addEventListener('resize', () => {
+            setWidth(window.innerWidth)
+        })
+    }, [])
     return (
         <Container maxWidth="md" ref={chartNode}>
             <Grid container
@@ -49,7 +56,7 @@ const PollingPage = (props: any) => {
                                 <Grid item xs={12} >
                                     <Typography variant="h6" align="center"  >График количества проголосовавших</Typography>
                                 </Grid>
-                                <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
+                                <Grid item xs={width < 767 ? 12 : 10} style={{ width: dimensions?.width, height: "auto" }}  >
 
                                     <Chart data={data?.data?.data?.votes_data} status={status} electors={data?.data?.data?.electors} />
                                 </Grid>

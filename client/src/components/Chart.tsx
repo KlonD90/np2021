@@ -5,28 +5,34 @@ import '../styles/chart.css';
 
 //how to make reference line https://github.com/recharts/recharts/issues/817
 const Chart = (props: any) => {
-    const [chartData, setChartData] = useState([])
+    const [render, setRender] = useState(false)
+    // const [chartData, setChartData] = useState([])
+    // useEffect(() => {
+    //     if (props.data) {
+    //         let i = 1;
+    //         const formattedData = props.data.map((votesData: any) => {
+    //             return {
+    //                 ...votesData,
+    //                 vote_date: [i++, votesData.vote_date]
+    //             }
+    //         })
+    //         setChartData(formattedData)
+    //     }
+    // }, [props.data])
     useEffect(() => {
-        if (props.data) {
-            let i = 1;
-            const formattedData = props.data.map((votesData: any) => {
-                return {
-                    ...votesData,
-                    vote_date: [i++, votesData.vote_date]
-                }
-            })
-            setChartData(formattedData)
+        setTimeout(() => {
+            setRender(true)
+        }, 50)
+        return () => {
+            setRender(false)
         }
-    }, [props.data])
-
+    }, [])
     return (
         <ResponsiveContainer className="chart-container" width="100%" height="70%" aspect={2}>
             {
-                chartData.length > 0 ?
+                props.data && render === true ?
                     <ComposedChart
-                        width={600}
-                        height={400}
-                        data={chartData}
+                        data={props.data}
                         margin={{
                             top: 0,
                             right: 30,
@@ -34,6 +40,7 @@ const Chart = (props: any) => {
                             bottom: 0,
                         }}
                     >
+                        <Legend className="fontName" verticalAlign="bottom" align="center" />
                         <defs>
                             <linearGradient id="color" x1="0" y1="0" x2="0" y2="01" >
                                 <stop offset="0%" stopColor="#2451B7" stopOpacity={0.4}>
@@ -47,8 +54,8 @@ const Chart = (props: any) => {
                             fontFamily={'Roboto, sans-serif'}
                             angle={-50}
                             interval="preserveEnd"
-                            dataKey="vote_date[1]"
-                            tickMargin={12}
+                            dataKey="vote_date"
+                            tickMargin={2}
                             tickFormatter={str => {
                                 const date = parseISO(str)
                                 return format(date, "HH")
@@ -61,9 +68,11 @@ const Chart = (props: any) => {
                                 interval="preserveEnd"
                             /> :
                             <YAxis
-                                dataKey="amount"
                                 fontFamily={'Roboto, sans-serif'}
+                                dataKey="amount"
+                                interval="preserveEnd"
                             />}
+
                         <Bar
                             name="кол-во проголосовавших по оф. данным"
                             fontFamily={'Roboto, sans-serif'}
@@ -73,20 +82,18 @@ const Chart = (props: any) => {
                         />
 
                         {props.data.map((votesData: any) => {
-                            const time = votesData.vote_date
                             if (votesData.vote_date === "2021-09-10 20:00:00") {
-                                return <ReferenceArea className="fontName" x1="2021-09-10 09:00:00" x2="2021-09-10 20:00:00" fill="yellow" label={{ value: "17 Сентябя" }} />
+                                return <ReferenceArea className="fontName" x1="2021-09-10 09:00:00" x2="2021-09-10 20:00:00" fill="white" label={{ value: "17 Сентябя" }} />
                             } else if (votesData.vote_date === "2021-09-11 09:00:00") {
-                                return <ReferenceArea className="fontName" x1="2021-09-11 09:00:00" x2="2021-09-11 20:00:00" fill="blue" label={{ value: "18 Сентябя" }} />
+                                return <ReferenceArea className="fontName" x1="2021-09-11 09:00:00" x2="2021-09-11 20:00:00" fill="rgba(186, 184, 184, 0.7)" label={{ value: "18 Сентябя" }} />
                             } else if (votesData.vote_date === "2021-09-12 09:00:00") {
-                                return <ReferenceArea className="fontName" x1="2021-09-12 09:00:00" x2="2021-09-12 20:00:00" fill="white" label={{ value: "19 Сентябя" }} />
+                                return <ReferenceArea className="fontName" x1="2021-09-12 09:00:00" x2="2021-09-12 20:00:00" fill="rgba(143, 135, 135, 0.7)" label={{ value: "19 Сентябя" }} />
                             }
                         })
                         }
-                        <Legend className="fontName" />
+
                         <Tooltip />
                         <CartesianGrid strokeDasharray="3 3" opacity={0.5} />
-
                     </ComposedChart>
 
                     :
