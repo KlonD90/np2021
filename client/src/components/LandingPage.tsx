@@ -29,7 +29,6 @@ const LandingPage = (props: any) => {
             setRefetchInterval(10000000)
         }
     }, [])
-
     // This is fofr testing purposes =>
     // useEffect(() => {
     //     const testData2 = data?.data?.votes_data.slice(0, 20)
@@ -46,7 +45,7 @@ const LandingPage = (props: any) => {
     // }, [])
 
     return (
-        <Container maxWidth="md" ref={chartNode}>
+        <Container maxWidth="md" ref={chartNode} className={classes.container}>
             <Grid container
                 spacing={2}
                 direction="column"

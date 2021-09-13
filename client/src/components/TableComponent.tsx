@@ -15,7 +15,7 @@ const TableComponent = (props: any) => {
         <TableContainer>
             <Table className={classes.table} size="medium" aria-label="simple table" padding={767 > width ? "none" : "normal"} >
                 <TableHead>
-                    <TableRow  >
+                    {props.districts || props.uiks ? <TableRow  >
                         <TableCell align="center">
                             ТИК
                         </TableCell>
@@ -25,7 +25,14 @@ const TableComponent = (props: any) => {
                         <TableCell align="center">
                             Кол-во голосов(официально)
                         </TableCell>
-                    </TableRow>
+                    </TableRow> : <TableRow  >
+                        <TableCell align="center">
+                            Время
+                        </TableCell>
+                        <TableCell align="center">
+                            Описание нарушения
+                        </TableCell>
+                    </TableRow>}
                 </TableHead>
                 {props.districts ? props.districts.map((dist: any) => {
                     return <TableRow className={classes.hoverEffect} onClick={() => {
@@ -48,6 +55,11 @@ const TableComponent = (props: any) => {
                         <TableCell align="right">{uik.uik_name}</TableCell>
                         <TableCell align="right">{uik.votes_amount}</TableCell>
                         <TableCell align="right">{uik.official ? uik.official : <p>нет данных</p>}</TableCell>
+                    </TableRow>
+                }) : props.issues ? props.issues.map((issue: any) => {
+                    return <TableRow key={issue.registered_time}>
+                        <TableCell align="center">{issue.registered_time}</TableCell>
+                        <TableCell align="center">{issue.description}</TableCell>
                     </TableRow>
                 }) : <p>{props.status}</p>
 

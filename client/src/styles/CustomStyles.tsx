@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/styles';
-import { relative } from 'path';
-import { isWhiteSpaceLike } from 'typescript';
+
 
 
 export const useStyles = makeStyles({
@@ -15,18 +14,21 @@ export const useStyles = makeStyles({
     },
     paper: {
         width: "100%",
-        backgroundColor: "rgba(177, 191, 204, 0.8)",
-        minHeight: "3em",
+        backgroundColor: "white",
+        minHeight: "4.3em",
+        position: "relative",
+        // left: "15%",
         display: "flex",
-        color: "#ededed",
+        color: "black",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        // borderRadius: "1em"
     },
     icon: {
         position: "relative",
         top: "0.2em",
         right: "0.2em",
-        color: "#ededed"
+        color: "black"
     },
     hoverEffect: {
         "&:hover": {
@@ -37,7 +39,7 @@ export const useStyles = makeStyles({
     toolBar: {
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "rgba(177, 191, 204, 1)",
+        backgroundColor: "rgba(236, 236, 236, 1)",
         minHeight: "14px",
         position: "fixed",
         width: "100%",
@@ -46,5 +48,29 @@ export const useStyles = makeStyles({
     gridItem: {
         postion: "relative",
         marginTop: "6em"
+    },
+    appbar: {
+        width: "86%",
+        marginRight: "7%"
+    },
+    container: {
+        position: "relative",
+        // top: "9vh"
+    },
+    toolBarTop: {
+        height: "8vh",
+        width: "100%",
+        backgroundColor: "rgba(236, 236, 236, 1)"
+    },
+    // logo: {
+    //     width: "220px",
+    //     // width: "100%",
+    //     height: "52px",
+    //     borderRadius: "1em"
+    // },
+    logoLg: {
+        width: "100%",
+        height: "52px",
+        borderRadius: "1em"
     }
 })
