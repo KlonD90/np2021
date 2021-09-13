@@ -27,7 +27,7 @@ const DistrictPage = (props: any) => {
         }
     }, [])
     return (
-        <Container maxWidth="md" ref={chartNode}>
+        <Container className={classes.container} maxWidth="md" ref={chartNode}>
             <Grid container
                 spacing={3}
                 direction="column"

@@ -6,6 +6,7 @@ import axios from 'axios';
 import Chart from './Chart';
 import { useResizeObserver } from './useResizeObserver';
 import { useStyles } from '../styles/CustomStyles';
+import TableComponent from './TableComponent';
 
 const PollingPage = (props: any) => {
     const [refetchInterval, setRefetchInterval] = useState(6000);
@@ -31,8 +32,9 @@ const PollingPage = (props: any) => {
     //         setWidth(window.innerWidth)
     //     })
     // }, [])
+    console.log(data?.data?.data?.issues)
     return (
-        <Container maxWidth="md" ref={chartNode}>
+        <Container className={classes.container} maxWidth="md" ref={chartNode}>
             <Grid container
                 spacing={3}
                 direction="column"
@@ -59,6 +61,25 @@ const PollingPage = (props: any) => {
                                 <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }}  >
 
                                     <Chart data={data?.data?.data?.votes_data} status={status} electors={data?.data?.data?.electors} />
+                                </Grid>
+                            </Grid>
+                        </Card>
+                    </Grid>
+
+                }
+                {dimensions &&
+                    <Grid item xs={9} style={{ width: dimensions?.width, height: "auto", marginBottom: "2em" }}  >
+                        <Card>
+                            <Grid container
+                                spacing={3}
+                                direction="column"
+                                alignItems="center"
+                                justifyContent="space-between">
+                                <Grid item xs={12}>
+                                    <Typography align="center" variant="h6">Список нарушений</Typography>
+                                </Grid>
+                                <Grid xs={12} item>
+                                    <TableComponent issues={data?.data?.data?.issues} status={status} history={props.history} />
                                 </Grid>
                             </Grid>
                         </Card>
