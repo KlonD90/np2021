@@ -7,6 +7,7 @@ import Chart from './Chart';
 import { useResizeObserver } from './useResizeObserver';
 import { useStyles } from '../styles/CustomStyles';
 import TableComponent from './TableComponent';
+import { ContactsOutlined } from '@material-ui/icons';
 
 const PollingPage = (props: any) => {
     const [refetchInterval, setRefetchInterval] = useState(6000);
@@ -32,7 +33,7 @@ const PollingPage = (props: any) => {
     //         setWidth(window.innerWidth)
     //     })
     // }, [])
-    console.log(data?.data?.data?.issues)
+
     return (
         <Container className={classes.container} maxWidth="md" ref={chartNode}>
             <Grid container

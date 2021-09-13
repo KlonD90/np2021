@@ -38,23 +38,29 @@ const TableComponent = (props: any) => {
                     return <TableRow className={classes.hoverEffect} onClick={() => {
                         props.history.push({
                             pathname: '/tk/:id',
-                            search: `?tiknum=${dist.tiknum}`
+                            search: `?tiknum=${dist.tiknum}&tikName=${dist.tik_name}`
                         })
                     }} key={dist.tiknum}>
                         <TableCell align="right">{dist.tik_name}</TableCell>
                         <TableCell align="center">{dist.votes}</TableCell>
                         <TableCell align="center">{dist.official ? dist.official : <p>нет данных</p>}</TableCell>
+                        <TableCell align="center">
+                            Перейти на страницу ТИКа
+                        </TableCell>
                     </TableRow>
                 }) : props.uiks ? props.uiks.map((uik: any) => {
                     return <TableRow className={classes.hoverEffect} onClick={() => {
                         props.history.push({
                             pathname: '/uik/:id',
-                            search: `?uikId=${uik.uik_id}`
+                            search: `?uikId=${uik.uik_id}&uikName=${uik.uik_name}&tikName=${props.tikName}&tikNum=${props.tikNumber}`
                         })
                     }} key={uik.uik_id}>
                         <TableCell align="right">{uik.uik_name}</TableCell>
                         <TableCell align="right">{uik.votes_amount}</TableCell>
-                        <TableCell align="right">{uik.official ? uik.official : <p>нет данных</p>}</TableCell>
+                        <TableCell align="center">{uik.official ? uik.official : <p>нет данных</p>}</TableCell>
+                        <TableCell align="center">
+                            Перейти на страницу УИКа
+                        </TableCell>
                     </TableRow>
                 }) : props.issues ? props.issues.map((issue: any) => {
                     return <TableRow key={issue.registered_time}>

@@ -14,7 +14,7 @@ const DistrictPage = (props: any) => {
     const chartNode = useRef(null);
     const dimensions = useResizeObserver(chartNode)
     const [refetchInterval, setRefetchInterval] = useState(6000);
-    const tikNum = queryString.parse(props.location.search)
+    const tikNum = queryString.parse(props.location.search);
     const fetchData = async () => {
         const res: any = await axios.get(`/get_tik/${tikNum.tiknum}`);
         return res
@@ -73,7 +73,7 @@ const DistrictPage = (props: any) => {
                                     <Typography align="center" variant="h6">Общее кол-во проголосовавших по ТИКам</Typography>
                                 </Grid>
                                 <Grid xs={12} item>
-                                    <TableComponent uiks={data?.data?.data?.summary_data} status={status} history={props.history} />
+                                    <TableComponent tikNumber={tikNum.tiknum} tikName={tikNum.tikName} uiks={data?.data?.data?.summary_data} status={status} history={props.history} />
                                 </Grid>
                             </Grid>
                         </Card>

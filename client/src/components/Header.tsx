@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { Container, Grid, Paper } from '@material-ui/core';
-
 import Logo from '../images/NewLogo.png';
 import HeaderInfoBar from './HeaderInfoBar';
+import BreadCrumbs from './BreadCrumbs';
 import { useStyles } from '../styles/CustomStyles';
 
 const Header = () => {
@@ -33,6 +33,9 @@ const Header = () => {
                 </Grid>
                 <Grid item xs={widthSize > 750 ? 9 : 12} >
                     <HeaderInfoBar />
+                </Grid>
+                <Grid item xs={widthSize > 750 ? 9 : 12} >
+                    <BreadCrumbs />
                 </Grid>
             </Grid>
 
