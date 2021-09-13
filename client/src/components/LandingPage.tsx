@@ -11,7 +11,7 @@ import { useResizeObserver } from './useResizeObserver';
 
 
 const LandingPage = (props: any) => {
-    const [refetchInterval, setRefetchInterval] = useState(1000);
+    const [refetchInterval, setRefetchInterval] = useState(6000);
     const [test, setTest] = useState(null);
     const chartNode = useRef(null)
     const dimensions = useResizeObserver(chartNode)
@@ -24,7 +24,7 @@ const LandingPage = (props: any) => {
     const { data, status } = useQuery('republic', fetchData, { refetchInterval })
     useEffect(() => {
         // setTest(data?.data?.votes_data.slice(0, 10))
-        setRefetchInterval(1000)
+        setRefetchInterval(6000)
         return () => {
             setRefetchInterval(10000000)
         }
@@ -102,7 +102,7 @@ const LandingPage = (props: any) => {
                 }
 
                 {dimensions &&
-                    <Grid item xs={9} style={{ width: dimensions?.width, height: "auto", marginBottom: "2em" }}  >
+                    <Grid item xs={12} style={{ width: dimensions?.width, height: "auto", marginBottom: "2em" }}  >
                         <Card>
                             <Grid container
                                 spacing={3}

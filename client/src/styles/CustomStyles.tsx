@@ -24,6 +24,11 @@ export const useStyles = makeStyles({
         justifyContent: "center",
         // borderRadius: "1em"
     },
+    breadcrumbs: {
+        backgroundColor: "white",
+        borderRadius: "0.4em",
+        padding: "0.3em"
+    },
     icon: {
         position: "relative",
         top: "0.2em",
