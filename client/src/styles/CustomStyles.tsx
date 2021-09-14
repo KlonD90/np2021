@@ -10,7 +10,15 @@ export const useStyles = makeStyles({
         alignSelf: "center",
     },
     header: {
-        color: "white"
+        color: "white",
+        fontWeight: 300,
+        fontStyle: "",
+        fontFamily: "Open Sans"
+    },
+    headerSm: {
+        fontWeight: 300,
+        fontStyle: "",
+        fontFamily: "Open Sans"
     },
     paper: {
         width: "100%",
@@ -22,7 +30,8 @@ export const useStyles = makeStyles({
         color: "black",
         alignItems: "center",
         justifyContent: "center",
-        // borderRadius: "1em"
+        // borderRadius: "1em",
+        padding: "6px"
     },
     breadcrumbs: {
         backgroundColor: "white",

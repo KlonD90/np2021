@@ -43,7 +43,7 @@ const PollingPage = (props: any) => {
                 justifyContent="space-between"
             >
                 <Grid item>
-                    <Typography className={classes.header} variant="h4" align="center" >{data?.data?.data?.uik_name}</Typography>
+                    <Typography className={classes.header} variant="h6" align="center" >{data?.data?.data?.uik_name}</Typography>
                 </Grid>
 
                 {dimensions &&
@@ -57,7 +57,7 @@ const PollingPage = (props: any) => {
                                 alignItems="center"
                                 justifyContent="space-between">
                                 <Grid item xs={12} >
-                                    <Typography variant="h6" align="center"  >График количества проголосовавших</Typography>
+                                    <Typography variant="subtitle1" className={classes.headerSm} align="center"  >График количества проголосовавших</Typography>
                                 </Grid>
                                 <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }}  >
 
@@ -69,7 +69,7 @@ const PollingPage = (props: any) => {
 
                 }
                 {dimensions &&
-                    <Grid item xs={9} style={{ width: dimensions?.width, height: "auto", marginBottom: "2em" }}  >
+                    <Grid item xs={12} style={{ width: dimensions?.width, height: "auto", marginBottom: "2em" }}  >
                         <Card>
                             <Grid container
                                 spacing={3}
@@ -77,7 +77,7 @@ const PollingPage = (props: any) => {
                                 alignItems="center"
                                 justifyContent="space-between">
                                 <Grid item xs={12}>
-                                    <Typography align="center" variant="h6">Список нарушений</Typography>
+                                    <Typography className={classes.headerSm} align="center" variant="subtitle1">Список нарушений</Typography>
                                 </Grid>
                                 <Grid xs={12} item>
                                     <TableComponent issues={data?.data?.data?.issues} status={status} history={props.history} />

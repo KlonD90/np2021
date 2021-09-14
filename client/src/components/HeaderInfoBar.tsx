@@ -4,6 +4,7 @@ import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 import { useStyles } from '../styles/CustomStyles';
+import { format, parseISO } from 'date-fns';
 
 const HeaderInfoBar = () => {
     const classes = useStyles();
@@ -14,9 +15,9 @@ const HeaderInfoBar = () => {
     const { data, status } = useQuery('commoninfo', fetchData)
     return (
         <Paper className={classes.paper} elevation={1} >
-            <Typography align="center" color="initial">
+            <Typography align="center" color="initial" style={{ fontFamily: "Open Sans" }}>
                 <SupervisedUserCircleIcon className={classes.icon} />
-                По данным НП по состоянию на {data ? data?.data?.last_update : status} всего проголосовало {data ? data?.data?.amount : status}
+                По данным НП по состоянию на <b> {data ? data?.data?.last_update : status} </b> всего проголосовало <b>{data ? data?.data?.amount : status}</b>
             </Typography>
         </Paper>
     )
