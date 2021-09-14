@@ -7,7 +7,7 @@ const Footer = () => {
     return (
 
         <Toolbar className={classes.toolBar} >
-            <Typography align="center">Barathrum&Co</Typography>
+            <Typography className={classes.headerSm} align="center">Barathrum&Co</Typography>
         </Toolbar>
 
     )

@@ -14,9 +14,9 @@ const DistrictPage = (props: any) => {
     const chartNode = useRef(null);
     const dimensions = useResizeObserver(chartNode)
     const [refetchInterval, setRefetchInterval] = useState(6000);
-    const tikNum = queryString.parse(props.location.search);
+    const tikNum = props.match.params.id;
     const fetchData = async () => {
-        const res: any = await axios.get(`/get_tik/${tikNum.tiknum}`);
+        const res: any = await axios.get(`/get_tik/${props.match.params.id}`);
         return res
     }
     const { data, status } = useQuery('get_tik', fetchData, { refetchInterval })
@@ -35,7 +35,7 @@ const DistrictPage = (props: any) => {
                 justifyContent="space-between"
             >
                 <Grid item>
-                    <Typography className={classes.header} variant="h4" align="center" >{data?.data?.data?.tik_name}</Typography>
+                    <Typography className={classes.header} variant="h6" align="center" >{data?.data?.data?.tik_name}</Typography>
                 </Grid>
 
                 {dimensions &&
@@ -49,7 +49,7 @@ const DistrictPage = (props: any) => {
                                 alignItems="center"
                                 justifyContent="space-between">
                                 <Grid item xs={12} >
-                                    <Typography variant="h6" align="center"  >График количества проголосовавших</Typography>
+                                    <Typography className={classes.headerSm} variant="subtitle1" align="center"  >График количества проголосовавших</Typography>
                                 </Grid>
                                 <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
 
@@ -70,7 +70,7 @@ const DistrictPage = (props: any) => {
                                 alignItems="center"
                                 justifyContent="space-between">
                                 <Grid item xs={12}>
-                                    <Typography align="center" variant="h6">Общее кол-во проголосовавших по ТИКам</Typography>
+                                    <Typography className={classes.headerSm} align="center" variant="subtitle1">Общее кол-во проголосовавших по ТИКам</Typography>
                                 </Grid>
                                 <Grid xs={12} item>
                                     <TableComponent tikNumber={tikNum.tiknum} tikName={tikNum.tikName} uiks={data?.data?.data?.summary_data} status={status} history={props.history} />

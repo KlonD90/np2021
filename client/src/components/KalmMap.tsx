@@ -9,7 +9,7 @@ const KalmMap = (props: any) => {
     let [map, setMap] = useState<any>(null);
     const [lng, setLng] = useState(45.0000);
     const [lat, setLat] = useState(46.7000);
-    const [zoom, setZoom] = useState(5.5);
+    const [zoom, setZoom] = useState(4.5);
     const [initializeMarkers, setInitializeMarkers] = useState(false)
 
     const attachMap = (setMap: React.Dispatch<React.SetStateAction<any>>, mapDiv: React.RefObject<HTMLDivElement>) => {

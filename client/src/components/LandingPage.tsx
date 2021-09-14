@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Typography, Container, Grid, Card } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 import '../styles/chart.css'
 import { useQuery } from 'react-query';
 import axios from 'axios';
@@ -8,6 +9,7 @@ import TableComponent from './TableComponent';
 import { useStyles } from '../styles/CustomStyles';
 import KalmMap from './KalmMap';
 import { useResizeObserver } from './useResizeObserver';
+import { getDistrictsData } from '../actions/districts';
 
 
 const LandingPage = (props: any) => {
@@ -16,11 +18,12 @@ const LandingPage = (props: any) => {
     const chartNode = useRef(null)
     const dimensions = useResizeObserver(chartNode)
     const classes = useStyles();
+    const dispatch = useDispatch();
     const fetchData = async () => {
         const res: any = await axios.get('/republic/');
+        dispatch(getDistrictsData(res?.data?.districts))
         return res
     }
-
     const { data, status } = useQuery('republic', fetchData, { refetchInterval })
     useEffect(() => {
         // setTest(data?.data?.votes_data.slice(0, 10))
@@ -53,7 +56,7 @@ const LandingPage = (props: any) => {
                 justifyContent="space-between"
             >
                 <Grid item>
-                    <Typography className={classes.header} variant="h4" align="center" >Общее кол-во проголосовавших по Республики </Typography>
+                    <Typography className={classes.header} variant="h6" align="center" >Общее кол-во проголосовавших по Республики </Typography>
                 </Grid>
 
                 {dimensions &&
@@ -67,7 +70,7 @@ const LandingPage = (props: any) => {
                                 alignItems="center"
                                 justifyContent="space-between">
                                 <Grid item xs={9} >
-                                    <Typography variant="h6" align="center"  >График количества проголосовавших</Typography>
+                                    <Typography className={classes.headerSm} variant="subtitle1" align="center"  >График количества проголосовавших</Typography>
                                 </Grid>
                                 <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
 
@@ -90,7 +93,7 @@ const LandingPage = (props: any) => {
                                 alignItems="center"
                                 justifyContent="space-between">
                                 <Grid item xs={12} >
-                                    <Typography variant="h6" align="center"  >Инфо по районам</Typography>
+                                    <Typography className={classes.headerSm} variant="subtitle1" align="center"  >Инфо по районам</Typography>
                                 </Grid>
                                 <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
 
@@ -110,7 +113,7 @@ const LandingPage = (props: any) => {
                                 alignItems="center"
                                 justifyContent="space-between">
                                 <Grid item xs={12}>
-                                    <Typography align="center" variant="h6">Общее кол-во проголосовавших по ТИКам</Typography>
+                                    <Typography className={classes.headerSm} align="center" variant="subtitle1">Общее кол-во проголосовавших по ТИКам</Typography>
                                 </Grid>
                                 <Grid xs={12} item>
                                     <TableComponent districts={data?.data?.districts} status={status} history={props.history} />

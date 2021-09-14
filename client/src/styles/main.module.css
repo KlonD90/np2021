@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     font-size: 13px;
+    font-family: Open Sans;
 }
 
 .logo-img{
@@ -13,4 +14,8 @@
 body{
     background-color: rgb(48, 33, 33);
     height: 100vh;
+}
+
+p{
+    font-family: Open Sans;
 }
