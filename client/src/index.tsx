@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './App';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import configureStore from './store/configureStore';
+import { store, persistor } from './store/configureStore';
+import { PersistGate } from 'redux-persist/integration/react';
 
-const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <PersistGate persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 );

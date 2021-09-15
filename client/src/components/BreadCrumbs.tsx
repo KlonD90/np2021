@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withRouter } from 'react-router';
 import { Breadcrumbs, Typography, Link, } from '@material-ui/core';
 import { useStyles } from '../styles/CustomStyles';
@@ -9,6 +9,8 @@ const BreadCrumbs = (props: any) => {
     const { history, tikNum } = props
     const districts = useSelector((state: any) => state.districts)
     const tikName = districts.filter((dist: any) => dist.tiknum === parseInt(tikNum))[0]
+    // console.log(tikName.tik_name)
+    console.log(districts)
     return (
         <Breadcrumbs className={classes.breadcrumbs} aria-label="breadcrumb">
             <Link className={classes.link} color="inherit" onClick={() => {

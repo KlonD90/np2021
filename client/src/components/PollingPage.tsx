@@ -33,6 +33,7 @@ const PollingPage = (props: any) => {
     //         setWidth(window.innerWidth)
     //     })
     // }, [])
+    // const tikNumber = parseInt(props.match.url.split('/')[2])
     return (
         <Container className={classes.container} maxWidth="md" ref={chartNode}>
             <Helmet>

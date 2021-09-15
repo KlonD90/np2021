@@ -17,45 +17,52 @@ const TableComponent = (props: any) => {
         <TableContainer>
             <Table className={classes.table} size="medium" aria-label="simple table" padding={767 > width && props.history.location.pathname !== '/uik/:id' ? "none" : "normal"} >
                 <TableHead>
-                    {props.districts || props.uiks ? <TableRow  >
+                    {props.districts ? <TableRow  >
                         <TableCell align="center">
                             <p>   ТИК</p>
                         </TableCell>
                         <TableCell align="center">
-                            <p>  Кол-во голосов</p>
+                            <p>голоса:<b>НП</b>/<span className="italic">официально</span></p>
+                        </TableCell>
+                    </TableRow> : props.uiks ? <TableRow> <TableCell align="center">
+                        <p>УИК</p>
+                    </TableCell>
+                        <TableCell align="center">
+                            <p>Адрес</p>
                         </TableCell>
                         <TableCell align="center">
-                            <p>   Кол-во голосов(официально)</p>
+                            <p>голоса:<b> НП</b>/<span className="italic">официально</span></p>
                         </TableCell>
-                    </TableRow> : <TableRow  >
+                    </TableRow> : props.issues && props.issues.length > 0 ? <TableRow  >
                         <TableCell align="center">
                             Время
                         </TableCell>
                         <TableCell align="center">
                             Описание нарушения
                         </TableCell>
-                    </TableRow>}
+                    </TableRow> : <p>Нарушений не зафиксировано</p>}
                 </TableHead>
                 {props.districts ? props.districts.map((dist: any) => {
                     return <TableRow className={classes.hoverEffect} onClick={() => {
                         props.history.push(`/tk/${dist.tiknum}`)
                     }} key={dist.tiknum}>
-                        <TableCell align="right"><p className="underline">{dist.tik_name}</p></TableCell>
-                        <TableCell align="center"><p>{dist.votes}</p></TableCell>
-                        <TableCell align="center"><p>{dist.official ? dist.official : "нет данных"}</p></TableCell>
+                        <TableCell align="left"><p className="cell underline">{dist.tik_name}</p></TableCell>
+                        <TableCell align="left"><p className="cell"><b>{dist.votes}</b>/<span className="italic">{dist.official ? dist.official : "—"}</span></p></TableCell>
                     </TableRow>
                 }) : props.uiks ? props.uiks.map((uik: any) => {
+                    const shortAddress = uik.address.split(',').slice(3,).join()
                     return <TableRow className={classes.hoverEffect} onClick={() => {
-                        props.history.push(`/uik/${uik.uik_id}`)
+                        props.history.push(`/uik/${props.tikNum}/${uik.uik_id}`)
                     }} key={uik.uik_id}>
-                        <TableCell align="right"><p className="underline">{uik.uik_name}</p></TableCell>
-                        <TableCell align="right"><p>{uik.votes_amount}</p></TableCell>
-                        <TableCell align="center"><p >{uik.official ? uik.official : "нет данных"}</p> </TableCell>
+                        <TableCell align="left"><p className="cell underline">УИК№{uik.uik_id}</p></TableCell>
+                        <TableCell align="left"><p className="cell underline">{shortAddress}</p></TableCell>
+                        <TableCell align="left"><p className="cell"><b>{uik.votes_amount}</b>/<span className="italic">{uik.official ? uik.official : "—"}</span></p></TableCell>
+
                     </TableRow>
                 }) : props.issues ? props.issues.map((issue: any) => {
                     return <TableRow key={issue.registered_time}>
-                        <TableCell align="left"><p>{format(parseISO(issue.registered_time), "dd:MM, HH")}</p></TableCell>
-                        <TableCell align="left"><p>{issue.description}</p></TableCell>
+                        <TableCell align="left"><p className="cell">{format(parseISO(issue.registered_time), "dd:MM, HH")}</p></TableCell>
+                        <TableCell align="left"><p className="cell">{issue.description}</p></TableCell>
                     </TableRow>
                 }) : <p>{props.status}</p>
 

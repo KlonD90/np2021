@@ -46,7 +46,6 @@ export const useStyles = makeStyles({
     },
     hoverEffect: {
         "&:hover": {
-            background: "#D4F1F4",
             cursor: "pointer"
         }
     },

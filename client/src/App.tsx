@@ -18,7 +18,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={LandingPage} />
           <Route exact path='/tk/:id' component={DistrictPage} />
-          <Route exact path='/uik/:id' component={PollingPage} />
+          <Route exact path='/uik/:id/:id' component={PollingPage} />
         </Switch>
         <Footer />
       </BrowserRouter>
