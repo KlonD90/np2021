@@ -12,7 +12,7 @@ import KalmMap from './KalmMap';
 import { useResizeObserver } from './useResizeObserver';
 import { getDistrictsData } from '../actions/districts';
 import BreadCrumbs from './BreadCrumbs';
-
+import Loading from '../images/Spin-1s-200px.gif';
 
 const LandingPage = (props: any) => {
     const [refetchInterval, setRefetchInterval] = useState(6000);
@@ -81,7 +81,9 @@ const LandingPage = (props: any) => {
                                 </Grid>
                                 <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
 
-                                    <Chart data={data?.data?.votes_data} status={status} electors={data?.data?.electors} />
+                                    {data?.data?.votes_data ? <Chart data={data?.data?.votes_data} status={status} electors={data?.data?.electors} /> : <div className="loading-spin">
+                                        <img src={Loading} alt="loading" />
+                                    </div>}
                                 </Grid>
                             </Grid>
                         </Card>
