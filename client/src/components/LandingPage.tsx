@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Typography, Container, Grid, Card } from '@material-ui/core';
+import { Typography, Container, Grid, Card, } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import '../styles/chart.css'
+import { Helmet } from 'react-helmet';
+import '../styles/chart.css';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import Chart from './Chart';
@@ -10,6 +11,7 @@ import { useStyles } from '../styles/CustomStyles';
 import KalmMap from './KalmMap';
 import { useResizeObserver } from './useResizeObserver';
 import { getDistrictsData } from '../actions/districts';
+import BreadCrumbs from './BreadCrumbs';
 
 
 const LandingPage = (props: any) => {
@@ -49,6 +51,9 @@ const LandingPage = (props: any) => {
 
     return (
         <Container maxWidth="md" ref={chartNode} className={classes.container}>
+            <Helmet>
+                <title>Наблюдательный Полк</title>
+            </Helmet>
             <Grid container
                 spacing={2}
                 direction="column"
@@ -58,7 +63,9 @@ const LandingPage = (props: any) => {
                 <Grid item>
                     <Typography className={classes.header} variant="h6" align="center" >Общее кол-во проголосовавших по Республики </Typography>
                 </Grid>
-
+                <Grid item>
+                    <BreadCrumbs />
+                </Grid>
                 {dimensions &&
                     <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
                         <Card>

@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
-import queryString from 'query-string';
 import { Typography, Container, Grid, Card } from '@material-ui/core';
 import { useQuery } from 'react-query';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 import Chart from './Chart';
 import { useResizeObserver } from './useResizeObserver';
 import { useStyles } from '../styles/CustomStyles';
 import TableComponent from './TableComponent';
-import { ContactsOutlined } from '@material-ui/icons';
+import BreadCrumbs from './BreadCrumbs';
 
 const PollingPage = (props: any) => {
     const [refetchInterval, setRefetchInterval] = useState(6000);
     const chartNode = useRef(null)
     const dimensions = useResizeObserver(chartNode)
     const classes = useStyles();
-    const { uikId } = queryString.parse(props.location.search)
+    const uikId = props.match.params.id
     const fetchData = async () => {
         const res: any = await axios.get(`/get_uik/${uikId}`);
         return res
@@ -33,15 +33,20 @@ const PollingPage = (props: any) => {
     //         setWidth(window.innerWidth)
     //     })
     // }, [])
-
     return (
         <Container className={classes.container} maxWidth="md" ref={chartNode}>
+            <Helmet>
+                <title>{data?.data?.data?.uik_name}</title>
+            </Helmet>
             <Grid container
                 spacing={3}
                 direction="column"
                 alignItems="center"
                 justifyContent="space-between"
             >
+                <Grid item>
+                    <BreadCrumbs uikName={data?.data?.data?.uik_name} tikNum={data?.data?.data?.parent_id} />
+                </Grid>
                 <Grid item>
                     <Typography className={classes.header} variant="h6" align="center" >{data?.data?.data?.uik_name}</Typography>
                 </Grid>
