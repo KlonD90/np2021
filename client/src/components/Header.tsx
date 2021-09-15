@@ -27,7 +27,7 @@ const Header = () => {
                 justifyContent="center">
                 <Grid item xs={widthSize > 750 ? 3 : 9} onClick={() => { history.push('/') }}  >
                     <Paper>
-                        <img className={classes.logoLg} src={Logo} />
+                        <img className={classes.logoLg} src={Logo} alt="Лого Наблюдательный Полк" />
                     </Paper>
                 </Grid>
                 <Grid item xs={widthSize > 750 ? 9 : 12} >

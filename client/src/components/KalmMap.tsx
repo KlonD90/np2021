@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, } from 'react';
+import { withRouter } from 'react-router';
 import mapboxgl from 'mapbox-gl';
 import "../styles/map.css";
 const accessToken: any = process.env.REACT_APP_MAPBOX_TOKEN
@@ -35,20 +36,27 @@ const KalmMap = (props: any) => {
     useEffect(() => {
         if (initializeMarkers && props.districts) {
             props.districts.map((district: any) => {
-                const popUp = new mapboxgl.Popup({ offset: 25 }).setText(
-                    `Общее число проголосовавших на данный момент в ${district.tik_name}: ${district.electors_in_tik}`
+                const popUp = new mapboxgl.Popup({ offset: 20 }).setHTML(
+                    `<p id="bold-name">Общее число проголосовавших на данный момент в <b>${district.tik_name}</b>: <b>${district.electors_in_tik}</b>.</p>`
                 );
+
                 const customMarker = document.createElement('div');
                 customMarker.id = `${district.tiknum}`
                 customMarker.className = 'marker';
                 customMarker.innerHTML = `<span><b></b></span>`
                 const marker = new mapboxgl.Marker(customMarker)
                 marker.setLngLat([district.longit, district.latit,]).setPopup(popUp).addTo(map)
+                // const bold = document.getElementById('bold-name')
+                // bold?.addEventListener("onclick", () => {
+                //     props.history.push(`/tk/${district.tiknum}`)
+                //     console.log('hello')
+                // })
                 return marker
+
+
             })
         }
     }, [props.districts, map])
-
 
 
     useEffect(() => {
@@ -64,4 +72,4 @@ const KalmMap = (props: any) => {
     )
 }
 
-export default KalmMap
+export default withRouter(KalmMap)

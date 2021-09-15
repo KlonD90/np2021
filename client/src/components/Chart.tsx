@@ -32,14 +32,14 @@ const Chart = (props: any) => {
                 >
                     <Legend className="fontName" verticalAlign="bottom" align="center" />
                     <defs>
-                        <linearGradient id="color" x1="0" y1="0" x2="0" y2="01" >
+                        <linearGradient fill="#bab99b" id="color" x1="0" y1="0" x2="0" y2="01" >
                             <stop offset="0%" stopColor="#2451B7" stopOpacity={0.4}>
                             </stop>
                             <stop offset="75%" stopColor="#2451B7" stopOpacity={0.05}>
                             </stop>
                         </linearGradient>
                     </defs>
-                    <Line dot={false} name="НП" dataKey="amount" stroke="green" />
+                    <Line dot={false} name="НП" dataKey="amount" stroke="#303048" />
                     <XAxis
                         fontFamily={'Open Sans, sans-serif'}
                         angle={-50}
@@ -67,7 +67,7 @@ const Chart = (props: any) => {
                         name="оф. данныe"
                         fontFamily={'Open Sans, sans-serif'}
                         dataKey="amount_official"
-                        fill="red"
+                        fill="#ac3c51"
                         opacity="1"
                     />
 
