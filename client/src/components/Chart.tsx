@@ -19,8 +19,6 @@ const Chart = (props: any) => {
     return (
         <ResponsiveContainer className="chart-container" width="100%" height="70%" aspect={2}>
             {props.data && render === true ?
-
-
                 <ComposedChart
                     data={props.data}
                     margin={{
@@ -54,7 +52,7 @@ const Chart = (props: any) => {
                         <YAxis
                             fontFamily={'Open Sans, sans-serif'}
                             dataKey="amount"
-                            domain={[0, (dataMax: any) => (props.electors)]}
+                            // domain={[0, (dataMax: any) => (props.electors)]}
                             interval="preserveEnd"
                         /> :
                         <YAxis
@@ -72,12 +70,12 @@ const Chart = (props: any) => {
                     />
 
                     {props.data.map((votesData: any) => {
-                        if (votesData.vote_date === "2021-09-10 09:00:00") {
-                            return <ReferenceLine className="fontName" x="2021-09-10 09:00:00" fill="white" label={{ value: "17 Сентябя", position: "right", fontStyle: "open sans", fontWeight: 300, fontSize: 5, }} alwaysShow={true} />
-                        } else if (votesData.vote_date === "2021-09-11 09:00:00") {
-                            return <ReferenceLine className="fontName" x="2021-09-11 09:00:00" x2="2021-09-11 20:00:00" fill="rgba(186, 184, 184, 0.7)" label={{ value: "18 Сентябя", position: "right", fontStyle: "open sans", fontWeight: 300, fontSize: 5 }} alwaysShow={true} />
-                        } else if (votesData.vote_date === "2021-09-12 09:00:00") {
-                            return <ReferenceLine className="fontName" x="2021-09-12 09:00:00" x2="2021-09-12 20:00:00" fill="rgba(143, 135, 135, 0.7)" label={{ value: "19 Сентябя", position: "right", fontStyle: "open sans", fontWeight: 300, fontSize: 5 }} alwaysShow={true} />
+                        if (votesData.vote_date === "2021-09-17 09:00:00") {
+                            return <ReferenceLine className="fontName" x="2021-09-17 09:00:00" fill="white" label={{ value: "17 Сентября", position: "right", fontStyle: "open sans", fontWeight: 300, fontSize: "0.5em", }} alwaysShow={true} />
+                        } else if (votesData.vote_date === "2021-09-18 09:00:00") {
+                            return <ReferenceLine className="fontName" x="2021-09-18 09:00:00" x2="2021-09-11 20:00:00" fill="rgba(186, 184, 184, 0.7)" label={{ value: "18 Сентября", position: "right", fontStyle: "open sans", fontWeight: 300, fontSize: 5 }} alwaysShow={true} />
+                        } else if (votesData.vote_date === "2021-09-18 09:00:00") {
+                            return <ReferenceLine className="fontName" x="2021-09-19 09:00:00" x2="2021-09-12 20:00:00" fill="rgba(143, 135, 135, 0.7)" label={{ value: "19 Сентября", position: "right", fontStyle: "open sans", fontWeight: 300, fontSize: 5 }} alwaysShow={true} />
                         }
                     })
                     }

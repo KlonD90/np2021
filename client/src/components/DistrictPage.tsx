@@ -75,10 +75,10 @@ const DistrictPage = (props: any) => {
                                 alignItems="center"
                                 justifyContent="space-between">
                                 <Grid item xs={12}>
-                                    <Typography className={classes.headerSm} align="center" variant="subtitle1">Общее кол-во проголосовавших по ТИКам</Typography>
+                                    <Typography className={classes.headerSm} align="center" variant="subtitle1">Общее кол-во проголосовавших по УИКам</Typography>
                                 </Grid>
                                 <Grid xs={12} item>
-                                    <TableComponent uiks={data?.data?.data?.summary_data} status={status} history={props.history} />
+                                    <TableComponent tikNum={props.match.params.id} uiks={data?.data?.data?.summary_data} status={status} history={props.history} />
                                 </Grid>
                             </Grid>
                         </Card>

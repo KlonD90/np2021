@@ -26,6 +26,7 @@ const LandingPage = (props: any) => {
         dispatch(getDistrictsData(res?.data?.districts))
         return res
     }
+
     const { data, status } = useQuery('republic', fetchData, { refetchInterval })
     useEffect(() => {
         // setTest(data?.data?.votes_data.slice(0, 10))

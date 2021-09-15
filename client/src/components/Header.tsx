@@ -16,7 +16,7 @@ const Header = () => {
     }, [])
     const classes = useStyles();
     return (
-        <Container style={{ marginTop: "1em" }} maxWidth="md" className={classes.hoverEffect} >
+        <Container style={{ marginTop: "1em" }} maxWidth="md"  >
             <Grid
                 item
                 container
@@ -25,9 +25,9 @@ const Header = () => {
                 direction={widthSize > 750 ? "row" : "column"}
                 alignItems="center"
                 justifyContent="center">
-                <Grid item xs={widthSize > 750 ? 3 : 9} onClick={() => { history.push('/') }}  >
+                <Grid className={classes.hoverEffect} item xs={widthSize > 750 ? 3 : 9} onClick={() => { history.push('/') }}  >
                     <Paper>
-                        <img className={classes.logoLg} src={Logo} alt="Лого Наблюдательный Полк" />
+                        <img className={classes.logoLg} src={Logo} alt="Наблюдательный Полк" />
                     </Paper>
                 </Grid>
                 <Grid item xs={widthSize > 750 ? 9 : 12} >
