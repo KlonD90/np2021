@@ -86,5 +86,12 @@ export const useStyles = makeStyles({
         width: "100%",
         height: "52px",
         borderRadius: "1em"
+    },
+    link: {
+        "&:hover": {
+            background: "#D4F1F4",
+            cursor: "pointer"
+        },
+        color: "black"
     }
 })

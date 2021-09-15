@@ -46,10 +46,7 @@ const TableComponent = (props: any) => {
                     </TableRow>
                 }) : props.uiks ? props.uiks.map((uik: any) => {
                     return <TableRow className={classes.hoverEffect} onClick={() => {
-                        props.history.push({
-                            pathname: '/uik/:id',
-                            search: `?uikId=${uik.uik_id}&uikName=${uik.uik_name}&tikName=${props.tikName}&tikNum=${props.tikNumber}`
-                        })
+                        props.history.push(`/uik/${uik.uik_id}`)
                     }} key={uik.uik_id}>
                         <TableCell align="right"><p className="underline">{uik.uik_name}</p></TableCell>
                         <TableCell align="right"><p>{uik.votes_amount}</p></TableCell>

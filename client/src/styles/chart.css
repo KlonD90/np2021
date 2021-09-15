@@ -11,3 +11,9 @@
     letter-spacing: -0.29px;
     font-family: Roboto;
   }
+  .loading-spin {
+      width: 70%;
+      height: 70%;
+      position: relative;
+      left: 40%;
+  }

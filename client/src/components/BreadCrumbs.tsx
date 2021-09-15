@@ -1,30 +1,23 @@
 import React from 'react';
 import { withRouter } from 'react-router';
-import { Breadcrumbs, Typography, Link } from '@material-ui/core';
+import { Breadcrumbs, Typography, Link, } from '@material-ui/core';
 import { useStyles } from '../styles/CustomStyles';
 import { useSelector } from 'react-redux';
-import queryString from 'query-string';
-import { Helmet } from 'react-helmet';
 
 const BreadCrumbs = (props: any) => {
     const classes = useStyles()
-    const { history, location } = props
-    const name = queryString.parse(location.search)
+    const { history, tikNum } = props
     const districts = useSelector((state: any) => state.districts)
-    const tikNum = parseInt(location.pathname.split('/')[2])
-    const tikName = districts.filter((dist: any) => dist.tiknum === tikNum)[0]
+    const tikName = districts.filter((dist: any) => dist.tiknum === parseInt(tikNum))[0]
     return (
-        <Breadcrumbs className={classes.breadcrumbs}>
-            <Helmet>
-                <title>{name.tikName ? name.tikName : name.uikName ? name.uikName : "Наблюдательный Полк"}</title>
-            </Helmet>
-            <Link color="inherit" onClick={() => {
+        <Breadcrumbs className={classes.breadcrumbs} aria-label="breadcrumb">
+            <Link className={classes.link} color="inherit" onClick={() => {
                 history.push('/')
-            }}><Typography>Главная</Typography></Link>
-            <Link onClick={() => {
+            }}><Typography><p>Главная</p></Typography></Link>
+            {tikName && <Link className={classes.link} onClick={() => {
                 history.goBack()
-            }} color="inherit"><Typography>{tikName && tikName.tik_name}</Typography></Link>
-            <Link color="inherit"><Typography>{name.uikName}</Typography></Link>
+            }} color="inherit" ><Typography><p>{tikName.tik_name}</p></Typography></Link>}
+            {props.uikName && <Link className={classes.link} color="inherit"><Typography><p>{props.uikName}</p></Typography></Link>}
         </Breadcrumbs>
     )
 }
