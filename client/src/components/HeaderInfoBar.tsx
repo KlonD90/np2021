@@ -15,7 +15,7 @@ const HeaderInfoBar = () => {
     const { data, status } = useQuery('commoninfo', fetchData)
     return (
         <Paper className={classes.paper} elevation={1} >
-            <Typography align="center" color="initial" style={{ fontFamily: "Open Sans" }}>
+            <Typography align="center" color="initial" style={{ fontFamily: "Monsterrat" }}>
                 <SupervisedUserCircleIcon className={classes.icon} />
                 По данным НП по состоянию на <b> {data ? data?.data?.last_update : status} </b> всего проголосовало <b>{data ? data?.data?.amount : status}</b>
             </Typography>

@@ -25,6 +25,13 @@ const LandingPage = (props: any) => {
         dispatch(getDistrictsData(res?.data?.districts))
         return res
     }
+    const fetchCommonData = async () => {
+        const res: any = await axios.get('/common_info/');
+        return res
+    }
+
+    const { data: commonData, status: commonStatus } = useQuery('commoninfo', fetchData)
+
 
     const { data, status } = useQuery('republic', fetchData, { refetchInterval })
     useEffect(() => {
@@ -61,7 +68,7 @@ const LandingPage = (props: any) => {
                 justifyContent="space-between"
             >
                 <Grid item>
-                    <Typography className={classes.header} variant="h6" align="center" >Общее кол-во проголосовавших по Республики </Typography>
+                    <Typography className={classes.header} variant="h6" align="center" >{commonData ? commonData?.data?.amount : 0}</Typography>
                 </Grid>
                 <Grid item>
                     <BreadCrumbs />

@@ -11,14 +11,13 @@ export const useStyles = makeStyles({
     },
     header: {
         color: "white",
-        fontWeight: 300,
-        fontStyle: "",
-        fontFamily: "Open Sans"
+        fontWeight: 700,
+        fontFamily: "'Montserrat', sans-serif;"
     },
     headerSm: {
         fontWeight: 300,
         fontStyle: "",
-        fontFamily: "Open Sans"
+        fontFamily: "'Montserrat', sans-serif;"
     },
     paper: {
         width: "100%",

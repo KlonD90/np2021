@@ -7,7 +7,7 @@ import Loading from '../images/Spin-1s-200px.gif'
 //how to make reference line https://github.com/recharts/recharts/issues/817
 const Chart = (props: any) => {
     const [render, setRender] = useState(false)
-
+    
     useEffect(() => {
         setTimeout(() => {
             setRender(true)
@@ -39,7 +39,7 @@ const Chart = (props: any) => {
                     </defs>
                     <Line dot={false} name="НП" dataKey="amount" stroke="#303048" />
                     <XAxis
-                        fontFamily={'Open Sans, sans-serif'}
+                        fontFamily={'Monsterrat, sans-serif'}
                         angle={-50}
                         interval="preserveEnd"
                         dataKey="vote_date"
@@ -50,20 +50,20 @@ const Chart = (props: any) => {
                         }} />
                     {props.electors ?
                         <YAxis
-                            fontFamily={'Open Sans, sans-serif'}
+                            fontFamily={'Monsterrat, sans-serif'}
                             dataKey="amount"
                             // domain={[0, (dataMax: any) => (props.electors)]}
                             interval="preserveEnd"
                         /> :
                         <YAxis
-                            fontFamily={'Open Sans, sans-serif'}
+                            fontFamily={'Monsterrat, sans-serif'}
                             dataKey="amount"
                             interval="preserveEnd"
                         />}
 
                     <Bar
                         name="оф. данныe"
-                        fontFamily={'Open Sans, sans-serif'}
+                        fontFamily={'Monsterrat, sans-serif'}
                         dataKey="amount_official"
                         fill="#ac3c51"
                         opacity="1"
@@ -71,11 +71,11 @@ const Chart = (props: any) => {
 
                     {props.data.map((votesData: any) => {
                         if (votesData.vote_date === "2021-09-17 09:00:00") {
-                            return <ReferenceLine className="fontName" x="2021-09-17 09:00:00" fill="white" label={{ value: "17 Сентября", position: "right", fontStyle: "open sans", fontWeight: 300, fontSize: "0.5em", }} alwaysShow={true} />
+                            return <ReferenceLine className="fontName" x="2021-09-17 09:00:00" fill="white" label={{ value: "17 Сентября", position: "right", fontStyle: "Monsterrat", fontWeight: 300, fontSize: "0.5em", }} alwaysShow={true} />
                         } else if (votesData.vote_date === "2021-09-18 09:00:00") {
-                            return <ReferenceLine className="fontName" x="2021-09-18 09:00:00" x2="2021-09-11 20:00:00" fill="rgba(186, 184, 184, 0.7)" label={{ value: "18 Сентября", position: "right", fontStyle: "open sans", fontWeight: 300, fontSize: 5 }} alwaysShow={true} />
+                            return <ReferenceLine className="fontName" x="2021-09-18 09:00:00" x2="2021-09-11 20:00:00" fill="rgba(186, 184, 184, 0.7)" label={{ value: "18 Сентября", position: "right", fontStyle: "Monsterrat", fontWeight: 300, fontSize: 5 }} alwaysShow={true} />
                         } else if (votesData.vote_date === "2021-09-18 09:00:00") {
-                            return <ReferenceLine className="fontName" x="2021-09-19 09:00:00" x2="2021-09-12 20:00:00" fill="rgba(143, 135, 135, 0.7)" label={{ value: "19 Сентября", position: "right", fontStyle: "open sans", fontWeight: 300, fontSize: 5 }} alwaysShow={true} />
+                            return <ReferenceLine className="fontName" x="2021-09-19 09:00:00" x2="2021-09-12 20:00:00" fill="rgba(143, 135, 135, 0.7)" label={{ value: "19 Сентября", position: "right", fontStyle: "Monsterrat", fontWeight: 300, fontSize: 5 }} alwaysShow={true} />
                         }
                     })
                     }
