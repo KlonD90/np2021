@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, Paper } from '@material-ui/core';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
-import axios from 'axios';
+import axios from '../api';
 import { useQuery } from 'react-query';
 import { useStyles } from '../styles/CustomStyles';
 import { format, parseISO } from 'date-fns';

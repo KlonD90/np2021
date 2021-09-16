@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import { Typography, Container, Grid, Card } from '@material-ui/core';
 import { useQuery } from 'react-query';
-import axios from 'axios';
+import axios from '../api';
 import Chart from './Chart';
 import TableComponent from './TableComponent';
 import { useResizeObserver } from './useResizeObserver';

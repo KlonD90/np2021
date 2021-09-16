@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import '../styles/chart.css';
 import { useQuery } from 'react-query';
-import axios from 'axios';
+import axios from '../api';
 import Chart from './Chart';
 import TableComponent from './TableComponent';
 import { useStyles } from '../styles/CustomStyles';
@@ -16,7 +16,6 @@ import Loading from '../images/Spin-1s-200px.gif';
 
 const LandingPage = (props: any) => {
     const [refetchInterval, setRefetchInterval] = useState(6000);
-    const [test, setTest] = useState(null);
     const chartNode = useRef(null)
     const dimensions = useResizeObserver(chartNode)
     const classes = useStyles();
