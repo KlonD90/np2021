@@ -24,12 +24,14 @@ const TableComponent = (props: any) => {
                         <col span={1} style={{width: '50%'}} />
                         <col span={1} style={{width: '25%'}} />
                     </colgroup>
-                    : props.issues
+                    : props.issues && props.issues.length > 0
                         ? <colgroup>
                             <col span={1} style={{width: '20%'}} />
                             <col span={1} style={{width: '75%'}} />
                         </colgroup>
-                        : null}
+                        : <colgroup>
+                            <col span={1} style={{width: '100%'}} />
+                        </colgroup>}
             {props.districts 
                 ? <tr>
                     <th>ТИК</th>
