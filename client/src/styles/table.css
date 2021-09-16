@@ -26,8 +26,12 @@
     letter-spacing: 0.025em;
 }
 
-.issue-table__row_clickable {
+.issue-table__row_clickable:hover {
     cursor: pointer;
+}
+
+.issue-table__row_clickable:hover td span{
+    background: #e3e3e3;
 }
 
 .issue-table th {
