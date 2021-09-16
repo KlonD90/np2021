@@ -132,7 +132,6 @@ const LandingPage = (props: any) => {
                     </Grid>
 
                 }
-
             </Grid>
         </Container>
     )

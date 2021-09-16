@@ -2,8 +2,7 @@ import React, { useState, useRef, useEffect, } from 'react';
 import { withRouter } from 'react-router';
 import mapboxgl from 'mapbox-gl';
 import "../styles/map.css";
-const accessToken: any = process.env.REACT_APP_MAPBOX_TOKEN
-mapboxgl.accessToken = accessToken;
+mapboxgl.accessToken = "pk.eyJ1IjoiYmFzYW4iLCJhIjoiY2twOWk5dXNzMGo1MDJvbXBuMm1mYzRtaSJ9.Jx7_c_BVbQCOANk-dFYldA";
 
 const KalmMap = (props: any) => {
     const mapContainer = useRef<any>(null);

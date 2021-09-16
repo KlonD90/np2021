@@ -10,7 +10,6 @@ const BreadCrumbs = (props: any) => {
     const districts = useSelector((state: any) => state.districts)
     const tikName = districts.filter((dist: any) => dist.tiknum === parseInt(tikNum))[0]
     // console.log(tikName.tik_name)
-    console.log(districts)
     return (
         <Breadcrumbs className={classes.breadcrumbs} aria-label="breadcrumb">
             <Link className={classes.link} color="inherit" onClick={() => {
