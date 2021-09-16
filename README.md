@@ -1,4 +1,4 @@
-#Наблюдательный Полк 2021 (Election Monitoring Regiment)
+# Наблюдательный Полк 2021 (Election Monitoring Regiment)
 
 
 Election Monitoring Regiment is a web application, which helps the independent election observers 
