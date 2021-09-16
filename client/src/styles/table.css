@@ -16,6 +16,7 @@
     line-height: 22px;
     letter-spacing: 0.025em;
     color: #565454;
+    margin: 10px 0 52px;
 }
 
 .issue-table caption {
@@ -53,6 +54,10 @@
 }
 
 @media screen and (max-width: 768px) {
+    .issue-table {
+        margin: 10px 0 26px;
+    }
+
     .issue-table caption {
         font-size: 14px;
         line-height: 17px;
