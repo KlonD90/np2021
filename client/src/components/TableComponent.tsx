@@ -32,6 +32,7 @@ const TableComponent = (props: any) => {
                         : <colgroup>
                             <col span={1} style={{width: '100%'}} />
                         </colgroup>}
+            <thead>
             {props.districts 
                 ? <tr>
                     <th>ТИК</th>
@@ -48,7 +49,9 @@ const TableComponent = (props: any) => {
                             <th>дата</th>
                             <th>описание</th>
                         </tr> 
-                        : <p>Нарушений не зафиксировано</p>}
+                        : <tr><td>Нарушений не зафиксировано</td></tr>}
+            </thead>
+            <tbody>
             {props.districts 
                 ? props.districts.map((dist: any) => {return(
                 <tr className="issue-table__row_clickable" onClick={() => {props.history.push(`/tk/${dist.tiknum}`)}} key={dist.tiknum}>
@@ -70,7 +73,8 @@ const TableComponent = (props: any) => {
                             <td><span>{format(parseISO(issue.registered_time), "yyyy:MM:dd, HH:mm:ss")}</span></td>
                             <td><span>{issue.description}</span></td>
                         </tr>)})
-                        : <p>{props.status}</p>}
+                        : <tr><td>{props.status}</td></tr>}
+            </tbody>
         </table>
     )
 }
