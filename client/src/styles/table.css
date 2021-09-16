@@ -49,6 +49,7 @@
     justify-content: center;
     align-items: center;
     margin: 7px 17px;
+    text-align: center;
 }
 
 @media screen and (max-width: 768px) {
