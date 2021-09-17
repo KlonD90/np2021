@@ -42,9 +42,9 @@ const LandingPage = (props: any) => {
             setRefetchInterval(10000000)
         }
     }, [])
-
+    console.log(data)
     return (
-        <Container maxWidth="md" ref={chartNode} className={classes.container} style={{marginTop: '60px'}}>
+        <Container maxWidth="md" ref={chartNode} className={classes.container} style={{ marginTop: '60px' }}>
             <Helmet>
                 <title>Наблюдательный Полк</title>
             </Helmet>
@@ -55,64 +55,64 @@ const LandingPage = (props: any) => {
                 justifyContent="space-between"
             >
                 <Grid item>
-                    <div className={classes.header}>{commonData ? (commonData?.data?.amount * 1).toString().split('').reverse().reduce<string[]>((r, c, i) => {r.push(c); if (i%3 === 2) { r.push(' ');} return r;}, []).reverse().join('') : 0}</div>
-                    <div className={classes.hInfo}>всего проголосовало по данным НП<br/>по состоянию на {commonData ? commonData?.data?.last_update : status}</div>
+                    <div className={classes.header}>{commonData ? (commonData?.data?.amount * 1).toString().split('').reverse().reduce<string[]>((r, c, i) => { r.push(c); if (i % 3 === 2) { r.push(' '); } return r; }, []).reverse().join('') : 0}</div>
+                    <div className={classes.hInfo}>всего проголосовало по данным НП<br />по состоянию на {commonData ? commonData?.data?.last_update : status}</div>
                 </Grid>
 
                 {dimensions &&
                     <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
-                            <Grid
-                                style={{ width: dimensions?.width, height: "auto" }}
-                                container
-                                spacing={3}
-                                direction="column"
-                                alignItems="center"
-                                justifyContent="space-between">
-                                <Grid item xs={9} >
-                                    <Typography className={classes.headerSm} variant="subtitle1" align="center"  >График количества проголосовавших</Typography>
-                                </Grid>
-                                <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
-
-                                    {data?.data?.votes_data ? <Chart data={data?.data?.votes_data} status={status} electors={data?.data?.electors} /> : <div className="loading-spin">
-                                        <img src={Loading} alt="loading" />
-                                    </div>}
-                                </Grid>
+                        <Grid
+                            style={{ width: dimensions?.width, height: "auto" }}
+                            container
+                            spacing={3}
+                            direction="column"
+                            alignItems="center"
+                            justifyContent="space-between">
+                            <Grid item xs={9} >
+                                <Typography className={classes.headerSm} variant="subtitle1" align="center"  >График количества проголосовавших</Typography>
                             </Grid>
+                            <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
+
+                                {data?.data?.votes_data ? <Chart data={data?.data?.votes_data} status={status} electors={data?.data?.electors} /> : <div className="loading-spin">
+                                    <img src={Loading} alt="loading" />
+                                </div>}
+                            </Grid>
+                        </Grid>
                     </Grid>
 
                 }
 
                 {dimensions &&
                     <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
-                            <Grid
-                                style={{ width: dimensions?.width, height: "auto" }}
-                                container
-                                spacing={3}
-                                direction="column"
-                                alignItems="center"
-                                justifyContent="space-between">
-                                <Grid item xs={12} >
-                                    <Typography className={classes.headerSm} variant="subtitle1" align="center"  >Информация по районам</Typography>
-                                </Grid>
-                                <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
-
-                                    <KalmMap districts={data?.data?.districts} status={props.status} />
-                                </Grid>
+                        <Grid
+                            style={{ width: dimensions?.width, height: "auto" }}
+                            container
+                            spacing={3}
+                            direction="column"
+                            alignItems="center"
+                            justifyContent="space-between">
+                            <Grid item xs={12} >
+                                <Typography className={classes.headerSm} variant="subtitle1" align="center"  >Информация по районам</Typography>
                             </Grid>
+                            <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
+
+                                <KalmMap districts={data?.data?.districts} status={props.status} />
+                            </Grid>
+                        </Grid>
                     </Grid>
                 }
 
                 {dimensions &&
                     <Grid item xs={12} style={{ width: dimensions?.width, height: "auto", marginBottom: "2em" }}  >
-                            <Grid container
-                                spacing={3}
-                                direction="column"
-                                alignItems="center"
-                                justifyContent="space-between">
-                                <Grid xs={12} item>
-                                    <TableComponent districts={data?.data?.districts} status={status} history={props.history} caption="Общее количество проголосовавших по ТИКам"/>
-                                </Grid>
+                        <Grid container
+                            spacing={3}
+                            direction="column"
+                            alignItems="center"
+                            justifyContent="space-between">
+                            <Grid xs={12} item>
+                                <TableComponent districts={data?.data?.districts} status={status} history={props.history} caption="Общее количество проголосовавших по ТИКам" />
                             </Grid>
+                        </Grid>
                     </Grid>
 
                 }

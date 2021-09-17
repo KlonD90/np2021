@@ -37,7 +37,7 @@ const KalmMap = (props: any) => {
         if (initializeMarkers && props.districts) {
             props.districts.map((district: any) => {
                 const popUp = new mapboxgl.Popup({ offset: 20 }).setHTML(
-                    `<p id="bold-name">Общее число проголосовавших на данный момент в  <a style="text-decoration: none; color: black; border: none" href="/tk/${district.tiknum}"><b>${district.tik_name}</b>: <b>${district.electors_in_tik}</b></a>.</p>`
+                    `<p id="bold-name">Общее число проголосовавших на данный момент в  <a style="text-decoration: none; color: black; border: none" href="/tk/${district.tiknum}"><b>${district.tik_name}</b>: <b>${district.votes}</b></a>.</p>`
                 );
 
                 const customMarker = document.createElement('div');
