@@ -128,11 +128,8 @@ const LandingPage = (props: any) => {
                                 direction="column"
                                 alignItems="center"
                                 justifyContent="space-between">
-                                <Grid item xs={12}>
-                                    <Typography className={classes.headerSm} align="center" variant="subtitle1">Общее кол-во проголосовавших по ТИКам</Typography>
-                                </Grid>
                                 <Grid xs={12} item>
-                                    <TableComponent districts={data?.data?.districts} status={status} history={props.history} />
+                                    <TableComponent districts={data?.data?.districts} status={status} history={props.history} caption="Общее кол-во проголосовавших по ТИКам"/>
                                 </Grid>
                             </Grid>
                         </Card>
