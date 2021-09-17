@@ -22,7 +22,7 @@ export const useStyles = makeStyles({
         fontWeight: 600,
         fontFamily: "'Montserrat', sans-serif;",
         textAlign: 'center',
-        marginBottom: '90px'
+        marginBottom: '60px'
     },
     headerSm: {
         color: '#565454',

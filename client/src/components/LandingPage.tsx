@@ -44,7 +44,7 @@ const LandingPage = (props: any) => {
     }, [])
 
     return (
-        <Container maxWidth="md" ref={chartNode} className={classes.container} style={{marginTop: '120px'}}>
+        <Container maxWidth="md" ref={chartNode} className={classes.container} style={{marginTop: '60px'}}>
             <Helmet>
                 <title>Наблюдательный Полк</title>
             </Helmet>
