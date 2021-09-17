@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { TableContainer, Table, TableHead, TableRow, TableCell } from '@material-ui/core';
-import { useStyles } from '../styles/CustomStyles'
 import { format, parseISO } from 'date-fns';
 import '../styles/table.css'
 
@@ -12,63 +10,72 @@ const TableComponent = (props: any) => {
             setWidth(window.innerWidth)
         })
     }, [])
-    const classes = useStyles();
     return (
-        <TableContainer>
-            <Table className={classes.table} size="medium" aria-label="simple table" padding={767 > width && props.history.location.pathname !== '/uik/:id' ? "none" : "normal"} >
-                <TableHead>
-                    {props.districts ? <TableRow  >
-                        <TableCell align="center">
-                            <p>   ТИК</p>
-                        </TableCell>
-                        <TableCell align="center">
-                            <p>голоса:<b>НП</b>/<span className="italic">официально</span></p>
-                        </TableCell>
-                    </TableRow> : props.uiks ? <TableRow> <TableCell align="center">
-                        <p>УИК</p>
-                    </TableCell>
-                        <TableCell align="center">
-                            <p>Адрес</p>
-                        </TableCell>
-                        <TableCell align="center">
-                            <p>голоса:<b> НП</b>/<span className="italic">официально</span></p>
-                        </TableCell>
-                    </TableRow> : props.issues && props.issues.length > 0 ? <TableRow  >
-                        <TableCell align="center">
-                            Время
-                        </TableCell>
-                        <TableCell align="center">
-                            Описание нарушения
-                        </TableCell>
-                    </TableRow> : <p>Нарушений не зафиксировано</p>}
-                </TableHead>
-                {props.districts ? props.districts.map((dist: any) => {
-                    return <TableRow className={classes.hoverEffect} onClick={() => {
-                        props.history.push(`/tk/${dist.tiknum}`)
-                    }} key={dist.tiknum}>
-                        <TableCell align="left"><p className="cell underline">{dist.tik_name}</p></TableCell>
-                        <TableCell align="left"><p className="cell"><b>{dist.votes}</b>/<span className="italic">{dist.official ? dist.official : "—"}</span></p></TableCell>
-                    </TableRow>
-                }) : props.uiks ? props.uiks.map((uik: any) => {
-                    const shortAddress = uik.address.split(',').slice(3,).join()
-                    return <TableRow className={classes.hoverEffect} onClick={() => {
-                        props.history.push(`/uik/${props.tikNum}/${uik.uik_id}`)
-                    }} key={uik.uik_id}>
-                        <TableCell align="left"><p className="cell underline">УИК№{uik.uik_id}</p></TableCell>
-                        <TableCell align="left"><p className="cell underline">{shortAddress}</p></TableCell>
-                        <TableCell align="left"><p className="cell"><b>{uik.votes_amount}</b>/<span className="italic">{uik.official ? uik.official : "—"}</span></p></TableCell>
-
-                    </TableRow>
-                }) : props.issues ? props.issues.map((issue: any) => {
-                    return <TableRow key={issue.registered_time}>
-                        <TableCell align="left"><p className="cell">{format(parseISO(issue.registered_time), "dd:MM, HH")}</p></TableCell>
-                        <TableCell align="left"><p className="cell">{issue.description}</p></TableCell>
-                    </TableRow>
-                }) : <p>{props.status}</p>
-
-                }
-            </Table>
-        </TableContainer>
+        <table className='issue-table'>
+            <caption>{props.caption}</caption>
+            {props.districts
+                ? <colgroup>
+                    <col span={1} style={{width: '50%'}} />
+                    <col span={1} style={{width: '50%'}} />
+                </colgroup>
+                : props.uiks
+                    ? <colgroup>
+                        <col span={1} style={{width: '25%'}} />
+                        <col span={1} style={{width: '50%'}} />
+                        <col span={1} style={{width: '25%'}} />
+                    </colgroup>
+                    : props.issues && props.issues.length > 0
+                        ? <colgroup>
+                            <col span={1} style={{width: '20%'}} />
+                            <col span={1} style={{width: '75%'}} />
+                        </colgroup>
+                        : <colgroup>
+                            <col span={1} style={{width: '100%'}} />
+                        </colgroup>}
+            <thead>
+            {props.districts 
+                ? <tr>
+                    <th>ТИК</th>
+                    <th>голоса: НП/официально</th>
+                </tr> 
+                : props.uiks 
+                    ? <tr>
+                        <th>УИК</th>
+                        <th>адрес</th>
+                        <th>голоса</th>
+                    </tr> 
+                    : props.issues && props.issues.length > 0 
+                        ? <tr>
+                            <th>дата</th>
+                            <th>описание</th>
+                        </tr> 
+                        : <tr><td>Нарушений не зафиксировано</td></tr>}
+            </thead>
+            <tbody>
+            {props.districts 
+                ? props.districts.map((dist: any) => {return(
+                <tr className="issue-table__row_clickable" onClick={() => {props.history.push(`/tk/${dist.tiknum}`)}} key={dist.tiknum}>
+                    <td><span>{dist.tik_name}</span></td>
+                    <td><span>{dist.votes}&nbsp;/ {dist.official ? dist.official : "—"}</span></td>
+                </tr>)})
+                : props.uiks
+                    ? props.uiks.map((uik: any) => {
+                        const shortAddress = uik.address.split(',').slice(3,).join()
+                        return (
+                        <tr className="issue-table__row_clickable" onClick={() => {props.history.push(`/uik/${props.tikNum}/${uik.uik_id}`)}} key={uik.uik_id}>
+                           <td><span>УИК №{uik.uik_id}</span></td> 
+                           <td><span>{shortAddress}</span></td> 
+                           <td><span>{uik.votes_amount}&nbsp;/ {uik.official ? uik.official : "—"}</span></td> 
+                        </tr>)})
+                    : props.issues
+                        ? props.issues.map((issue: any) => {return (
+                        <tr key={issue.registered_time}>
+                            <td><span>{format(parseISO(issue.registered_time), "yyyy:MM:dd, HH:mm:ss")}</span></td>
+                            <td><span>{issue.description}</span></td>
+                        </tr>)})
+                        : <tr><td>{props.status}</td></tr>}
+            </tbody>
+        </table>
     )
 }
 

@@ -82,11 +82,8 @@ const PollingPage = (props: any) => {
                                 direction="column"
                                 alignItems="center"
                                 justifyContent="space-between">
-                                <Grid item xs={12}>
-                                    <Typography className={classes.headerSm} align="center" variant="subtitle1">Список нарушений</Typography>
-                                </Grid>
                                 <Grid xs={12} item>
-                                    <TableComponent issues={data?.data?.data?.issues} status={status} history={props.history} />
+                                    <TableComponent issues={data?.data?.data?.issues} status={status} history={props.history} caption="Список нарушений"/>
                                 </Grid>
                             </Grid>
                         </Card>

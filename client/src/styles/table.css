@@ -9,3 +9,73 @@
     padding-left: 8px;
     padding-bottom: 6px;
 }
+
+.issue-table {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: 0.025em;
+    color: #565454;
+    margin: 10px 0 52px;
+}
+
+.issue-table caption {
+    margin: 20px auto 40px auto;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    letter-spacing: 0.025em;
+}
+
+.issue-table__row_clickable:hover {
+    cursor: pointer;
+}
+
+.issue-table__row_clickable:hover td span{
+    background: #e3e3e3;
+}
+
+.issue-table th {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    padding-bottom: 22px;
+}
+
+.issue-table td span {
+    display: flex;
+    height: 78px;
+    background: #F3F1F1;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    margin: 7px 17px;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .issue-table {
+        margin: 10px 0 26px;
+    }
+
+    .issue-table caption {
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+    }
+
+    .issue-table th {
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 15px;
+        text-align: center;
+        padding-bottom: 15px;
+    }
+
+    .issue-table td span {
+        margin: 2px 5px;
+        font-size: 12px;
+        line-height: 15px;
+        height: 56px;
+    }
+}
