@@ -44,9 +44,12 @@ export const useStyles = makeStyles({
         padding: "6px"
     },
     breadcrumbs: {
-        backgroundColor: "white",
-        borderRadius: "0.4em",
-        padding: "0.3em"
+        fontFamily: "'Montserrat', sans-serif;",
+        fontWeight: 600,
+        fontSize: '24px',
+        textDecoration: 'none !important',
+        marginBottom: '30px',
+        marginTop: '30px'
     },
     icon: {
         position: "relative",
@@ -97,8 +100,10 @@ export const useStyles = makeStyles({
     link: {
         "&:hover": {
             background: "#D4F1F4",
-            cursor: "pointer"
+            cursor: "pointer",
+            textDecoration: 'none'
         },
-        color: "black"
+        color: "black",
+        textDecoration: 'none'
     }
 })

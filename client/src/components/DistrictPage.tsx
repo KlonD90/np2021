@@ -38,14 +38,10 @@ const DistrictPage = (props: any) => {
                 justifyContent="space-between"
             >
                 <Grid item>
-                    <Typography className={classes.header} variant="h6" align="center" >{data?.data?.data?.tik_name}</Typography>
-                </Grid>
-                <Grid item>
                     <BreadCrumbs tikNum={props.match.params.id} />
                 </Grid>
                 {dimensions &&
                     <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
-                        <Card>
                             <Grid
                                 style={{ width: dimensions?.width, height: "auto" }}
                                 container
@@ -61,14 +57,12 @@ const DistrictPage = (props: any) => {
                                     <Chart data={data?.data?.data?.votes_data} status={status} electors={data?.data?.data?.electors} />
                                 </Grid>
                             </Grid>
-                        </Card>
                     </Grid>
 
                 }
 
                 {dimensions &&
                     <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }}  >
-                        <Card>
                             <Grid container
                                 spacing={3}
                                 direction="column"
@@ -78,7 +72,6 @@ const DistrictPage = (props: any) => {
                                     <TableComponent tikNum={props.match.params.id} uiks={data?.data?.data?.summary_data} status={status} history={props.history} caption="Общее кол-во проголосовавших по УИКам"/>
                                 </Grid>
                             </Grid>
-                        </Card>
                     </Grid>
 
                 }

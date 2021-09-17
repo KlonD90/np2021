@@ -26,14 +26,6 @@ const PollingPage = (props: any) => {
             setRefetchInterval(10000000)
         }
     }, [])
-    // const [width, setWidth] = useState(0)
-    // useEffect(() => {
-    //     setWidth(window.innerWidth)
-    //     window.addEventListener('resize', () => {
-    //         setWidth(window.innerWidth)
-    //     })
-    // }, [])
-    // const tikNumber = parseInt(props.match.url.split('/')[2])
     return (
         <Container className={classes.container} maxWidth="md" ref={chartNode}>
             <Helmet>
@@ -48,13 +40,9 @@ const PollingPage = (props: any) => {
                 <Grid item>
                     <BreadCrumbs uikName={data?.data?.data?.uik_name} tikNum={data?.data?.data?.parent_id} />
                 </Grid>
-                <Grid item>
-                    <Typography className={classes.header} variant="h6" align="center" >{data?.data?.data?.uik_name}</Typography>
-                </Grid>
 
                 {dimensions &&
                     <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
-                        <Card>
                             <Grid
                                 style={{ width: dimensions?.width, height: "auto" }}
                                 container
@@ -70,13 +58,11 @@ const PollingPage = (props: any) => {
                                     <Chart data={data?.data?.data?.votes_data} status={status} electors={data?.data?.data?.electors} />
                                 </Grid>
                             </Grid>
-                        </Card>
                     </Grid>
 
                 }
                 {dimensions &&
                     <Grid item xs={12} style={{ width: dimensions?.width, height: "auto", marginBottom: "2em" }}  >
-                        <Card>
                             <Grid container
                                 spacing={3}
                                 direction="column"
@@ -86,7 +72,6 @@ const PollingPage = (props: any) => {
                                     <TableComponent issues={data?.data?.data?.issues} status={status} history={props.history} caption="Список нарушений"/>
                                 </Grid>
                             </Grid>
-                        </Card>
                     </Grid>
 
                 }

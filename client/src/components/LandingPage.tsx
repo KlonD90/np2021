@@ -61,7 +61,6 @@ const LandingPage = (props: any) => {
 
                 {dimensions &&
                     <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
-                        <Card>
                             <Grid
                                 style={{ width: dimensions?.width, height: "auto" }}
                                 container
@@ -79,14 +78,12 @@ const LandingPage = (props: any) => {
                                     </div>}
                                 </Grid>
                             </Grid>
-                        </Card>
                     </Grid>
 
                 }
 
                 {dimensions &&
                     <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
-                        <Card>
                             <Grid
                                 style={{ width: dimensions?.width, height: "auto" }}
                                 container
@@ -102,13 +99,11 @@ const LandingPage = (props: any) => {
                                     <KalmMap districts={data?.data?.districts} status={props.status} />
                                 </Grid>
                             </Grid>
-                        </Card>
                     </Grid>
                 }
 
                 {dimensions &&
                     <Grid item xs={12} style={{ width: dimensions?.width, height: "auto", marginBottom: "2em" }}  >
-                        <Card>
                             <Grid container
                                 spacing={3}
                                 direction="column"
@@ -118,7 +113,6 @@ const LandingPage = (props: any) => {
                                     <TableComponent districts={data?.data?.districts} status={status} history={props.history} caption="Общее количество проголосовавших по ТИКам"/>
                                 </Grid>
                             </Grid>
-                        </Card>
                     </Grid>
 
                 }

@@ -14,11 +14,11 @@ const BreadCrumbs = (props: any) => {
         <Breadcrumbs className={classes.breadcrumbs} aria-label="breadcrumb">
             <Link className={classes.link} color="inherit" onClick={() => {
                 history.push('/')
-            }}><Typography><p>Главная</p></Typography></Link>
+            }}><p>Главная</p></Link>
             {tikName && <Link className={classes.link} onClick={() => {
                 history.goBack()
-            }} color="inherit" ><Typography><p>{tikName.tik_name}</p></Typography></Link>}
-            {props.uikName && <Link className={classes.link} color="inherit"><Typography><p>{props.uikName}</p></Typography></Link>}
+            }} color="inherit" ><p>{tikName.tik_name}</p></Link>}
+            {props.uikName && <Link className={classes.link} color="inherit"><p>{props.uikName}</p></Link>}
         </Breadcrumbs>
     )
 }
