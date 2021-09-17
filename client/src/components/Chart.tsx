@@ -37,7 +37,7 @@ const Chart = (props: any) => {
                             </stop>
                         </linearGradient>
                     </defs>
-                    <Line dot={false} name="НП" dataKey="amount" stroke="#303048" />
+                    <Line dot={false} name="данные НП" dataKey="amount" stroke="#007AFF" connectNulls type="monotone" />
                     <XAxis
                         fontFamily={'Monsterrat, sans-serif'}
                         angle={-50}
@@ -61,12 +61,13 @@ const Chart = (props: any) => {
                             interval="preserveEnd"
                         />}
 
-                    <Bar
+                    <Line
                         name="оф. данныe"
+                        dot={false}
                         fontFamily={'Monsterrat, sans-serif'}
                         dataKey="amount_official"
-                        fill="#ac3c51"
-                        opacity="1"
+                        connectNulls type="monotone"
+                        stroke="#FF0000"
                     />
 
                     {props.data.map((votesData: any) => {
@@ -81,7 +82,6 @@ const Chart = (props: any) => {
                     }
 
                     <Tooltip />
-                    <CartesianGrid strokeDasharray="3 3" opacity={0.5} />
                 </ComposedChart>
 
                 :

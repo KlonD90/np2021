@@ -10,14 +10,25 @@ export const useStyles = makeStyles({
         alignSelf: "center",
     },
     header: {
-        color: "white",
+        color: '#565454',
+        fontSize: '128px',
         fontWeight: 700,
-        fontFamily: "'Montserrat', sans-serif;"
+        fontFamily: "'Montserrat', sans-serif;",
+        textAlign: 'center'
+    },
+    hInfo: {
+        color: '#565454',
+        fontSize: '18px',
+        fontWeight: 600,
+        fontFamily: "'Montserrat', sans-serif;",
+        textAlign: 'center',
+        marginBottom: '90px'
     },
     headerSm: {
-        fontWeight: 300,
-        fontStyle: "",
-        fontFamily: "'Montserrat', sans-serif;"
+        color: '#565454',
+        fontWeight: 600,
+        fontFamily: "'Montserrat', sans-serif;",
+        fontSize: '18px',
     },
     paper: {
         width: "100%",
@@ -44,9 +55,7 @@ export const useStyles = makeStyles({
         color: "black"
     },
     hoverEffect: {
-        "&:hover": {
-            cursor: "pointer"
-        }
+        cursor: "pointer"
     },
     toolBar: {
         alignItems: "center",

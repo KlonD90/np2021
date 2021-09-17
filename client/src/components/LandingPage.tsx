@@ -25,12 +25,13 @@ const LandingPage = (props: any) => {
         dispatch(getDistrictsData(res?.data?.districts))
         return res
     }
+
     const fetchCommonData = async () => {
         const res: any = await axios.get('/common_info/');
         return res
     }
 
-    const { data: commonData, status: commonStatus } = useQuery('commoninfo', fetchData)
+    const { data: commonData } = useQuery('commoninfo', fetchCommonData)
 
 
     const { data, status } = useQuery('republic', fetchData, { refetchInterval })
@@ -41,23 +42,9 @@ const LandingPage = (props: any) => {
             setRefetchInterval(10000000)
         }
     }, [])
-    // This is fofr testing purposes =>
-    // useEffect(() => {
-    //     const testData2 = data?.data?.votes_data.slice(0, 20)
-    //     setTimeout(() => {
-    //         setTest(testData2)
-    //     }, 6100)
-    // }, [])
-
-    // useEffect(() => {
-    //     const testData3 = data?.data?.votes_data.slice(0, 34)
-    //     setTimeout(() => {
-    //         setTest(testData3)
-    //     }, 12100)
-    // }, [])
 
     return (
-        <Container maxWidth="md" ref={chartNode} className={classes.container}>
+        <Container maxWidth="md" ref={chartNode} className={classes.container} style={{marginTop: '120px'}}>
             <Helmet>
                 <title>Наблюдательный Полк</title>
             </Helmet>
@@ -68,11 +55,10 @@ const LandingPage = (props: any) => {
                 justifyContent="space-between"
             >
                 <Grid item>
-                    <Typography className={classes.header} variant="h6" align="center" >{commonData ? commonData?.data?.amount : 0}</Typography>
+                    <div className={classes.header}>{commonData ? (commonData?.data?.amount * 1).toString().split('').reverse().reduce<string[]>((r, c, i) => {r.push(c); if (i%3 === 2) { r.push(' ');} return r;}, []).reverse().join('') : 0}</div>
+                    <div className={classes.hInfo}>всего проголосовало по данным НП<br/>по состоянию на {commonData ? commonData?.data?.last_update : status}</div>
                 </Grid>
-                <Grid item>
-                    <BreadCrumbs />
-                </Grid>
+
                 {dimensions &&
                     <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
                         <Card>
@@ -109,7 +95,7 @@ const LandingPage = (props: any) => {
                                 alignItems="center"
                                 justifyContent="space-between">
                                 <Grid item xs={12} >
-                                    <Typography className={classes.headerSm} variant="subtitle1" align="center"  >Инфо по районам</Typography>
+                                    <Typography className={classes.headerSm} variant="subtitle1" align="center"  >Информация по районам</Typography>
                                 </Grid>
                                 <Grid item xs={12} style={{ width: dimensions?.width, height: "auto" }} >
 
@@ -129,7 +115,7 @@ const LandingPage = (props: any) => {
                                 alignItems="center"
                                 justifyContent="space-between">
                                 <Grid item xs={12}>
-                                    <Typography className={classes.headerSm} align="center" variant="subtitle1">Общее кол-во проголосовавших по ТИКам</Typography>
+                                    <Typography className={classes.headerSm} align="center" variant="subtitle1">Общее количество проголосовавших по ТИКам</Typography>
                                 </Grid>
                                 <Grid xs={12} item>
                                     <TableComponent districts={data?.data?.districts} status={status} history={props.history} />
