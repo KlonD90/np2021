@@ -31,8 +31,7 @@ const LandingPage = (props: any) => {
         return res
     }
 
-    const { data: commonData } = useQuery('commoninfo', fetchCommonData)
-
+    const { data: commonData } = useQuery('commoninfo', fetchCommonData, { refetchInterval })
 
     const { data, status } = useQuery('republic', fetchData, { refetchInterval })
     useEffect(() => {
@@ -42,7 +41,6 @@ const LandingPage = (props: any) => {
             setRefetchInterval(10000000)
         }
     }, [])
-    console.log(data)
     return (
         <Container maxWidth="md" ref={chartNode} className={classes.container} style={{ marginTop: '60px' }}>
             <Helmet>
