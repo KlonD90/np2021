@@ -7,7 +7,7 @@ import Loading from '../images/Spin-1s-200px.gif'
 //how to make reference line https://github.com/recharts/recharts/issues/817
 const Chart = (props: any) => {
     const [render, setRender] = useState(false)
-    
+
     useEffect(() => {
         setTimeout(() => {
             setRender(true)
